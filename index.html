@@ -3,8 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Félix Muzellec - CV</title>
-    <meta name="description" content="CV de Félix Muzellec - Commercial Finance & Ops Lead">
+    <title>Félix Muzellec | Commercial Finance & Ops Lead | CV</title>
+    <meta name="description" content="Découvrez le profil de Félix Muzellec, expert en Commercial Finance, Revenue Operations et Finance Ops avec 10 ans d'expérience.">
+    <meta name="keywords" content="Félix Muzellec, Finance Ops, Revenue Operations, Commercial Finance, FP&A, Salesforce, SQL, Finance Automation">
+    
+    <!-- Données structurées pour le SEO (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Félix Muzellec",
+      "jobTitle": "Commercial Finance & Ops Lead",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Bourg-la-Reine",
+        "addressRegion": "Hauts-de-Seine",
+        "addressCountry": "FR"
+      },
+      "email": "felix.muzellec@gmail.com",
+      "telephone": "+33637342267",
+      "alumniOf": "NEOMA Business School",
+      "knowsAbout": ["Finance Ops", "Revenue Operations", "FP&A", "Salesforce", "Data Automation"]
+    }
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -13,7 +35,6 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            /* Force le rendu des couleurs de fond à l'impression */
             -webkit-print-color-adjust: exact;
             print-color-adjust: exact;
         }
@@ -44,7 +65,6 @@
             padding: 22px 32px;
         }
 
-        /* Header - ATS Optimized */
         header {
             margin-bottom: 12px;
             padding-bottom: 10px;
@@ -70,7 +90,6 @@
             margin-bottom: 8px;
         }
 
-        /* Contact Bar */
         .contact-bar {
             display: flex;
             flex-wrap: wrap;
@@ -80,11 +99,7 @@
             line-height: 1.25;
         }
 
-        .contact-bar .contact-item {
-            display: inline-block;
-        }
-
-        .contact-bar .contact-item:not(:first-child)::before {
+        .contact-item:not(:first-child)::before {
             content: "• ";
             margin-right: 7px;
             color: #b0bec5;
@@ -97,7 +112,6 @@
             font-weight: 500;
         }
 
-        /* Profile Section */
         .profile-section {
             background: linear-gradient(135deg, #f8fafb 0%, #eceff1 100%);
             padding: 11px 16px;
@@ -114,7 +128,6 @@
             font-weight: 600;
         }
 
-        /* Section Structure */
         .section {
             margin-bottom: 13px;
             page-break-inside: avoid;
@@ -132,7 +145,6 @@
             border-left: 4px solid #0d47a1;
         }
 
-        /* Experience Entries */
         .entry {
             margin-bottom: 7px;
             padding: 7px 11px;
@@ -189,7 +201,6 @@
             page-break-after: avoid;
         }
 
-        /* Lists */
         .entry ul {
             list-style: none;
             padding: 0;
@@ -215,7 +226,6 @@
             font-size: 9px;
         }
 
-        /* Education */
         .education-entry {
             margin-bottom: 7px;
             padding: 7px 11px;
@@ -260,7 +270,6 @@
             line-height: 1.38;
         }
 
-        /* Skills Grid */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -296,7 +305,6 @@
             border-left: 3px solid #0d47a1;
         }
 
-        /* Tags */
         .tag-container {
             display: flex;
             flex-wrap: wrap;
@@ -319,7 +327,6 @@
             color: #0d47a1;
         }
 
-        /* Info Lists */
         .info-list {
             list-style: none;
             padding: 0;
@@ -350,7 +357,6 @@
             float: right;
         }
 
-        /* Tech Note */
         .tech-note {
             margin-top: 7px;
             padding: 6px 9px;
@@ -362,7 +368,6 @@
             border-left: 2px solid #cbd5e1;
         }
 
-        /* Download Button */
         .download-btn {
             position: fixed;
             bottom: 30px;
@@ -389,77 +394,44 @@
             background: #1565c0;
         }
 
-        /* Print Optimization */
         @media print {
-            body {
-                background: white;
-                -webkit-print-color-adjust: exact !important;
-                print-color-adjust: exact !important;
-            }
-
-            .page-wrapper {
-                box-shadow: none;
-                margin: 0;
-                max-width: 100%;
-            }
-
-            .download-btn {
-                display: none !important;
-            }
-
-            .date-badge {
-                background-color: #0d47a1 !important;
-                color: #ffffff !important;
-                border: 1px solid #0d47a1;
-            }
-
-            .entry,
-            .education-entry,
-            .skill-card,
-            .info-card,
-            .subsection-title {
-                page-break-inside: avoid;
-                break-inside: avoid;
-            }
-
-            .page-break-before {
-                page-break-before: always;
-                break-before: always;
-                margin-top: 35px;
-            }
+            body { background: white; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+            .page-wrapper { box-shadow: none; margin: 0; max-width: 100%; }
+            .download-btn { display: none !important; }
+            .date-badge { background-color: #0d47a1 !important; color: #ffffff !important; border: 1px solid #0d47a1; }
+            .entry, .education-entry, .skill-card, .info-card, .subsection-title { page-break-inside: avoid; break-inside: avoid; }
+            .page-break-before { page-break-before: always; break-before: always; margin-top: 35px; }
         }
 
         @media screen {
-            .page-wrapper {
-                margin: 20px auto;
-            }
+            .page-wrapper { margin: 20px auto; }
         }
     </style>
 </head>
 <body>
-    <div class="page-wrapper" id="cv-content">
+    <div class="page-wrapper" id="cv-content" role="main">
         <div class="content">
-            <header>
+            <header role="banner">
                 <h1>Félix Muzellec</h1>
                 <div class="tagline">Commercial Finance & Ops Lead</div>
-                <div class="contact-bar">
+                <div class="contact-bar" aria-label="Informations de contact">
                     <span class="contact-item">56 avenue des Vergers, 92340 Bourg-la-Reine, France</span>
-                    <span class="contact-item"><a href="mailto:felix.muzellec@gmail.com">felix.muzellec@gmail.com</a></span>
-                    <span class="contact-item"><a href="tel:+33637342267">+33 6 37 34 22 67</a></span>
+                    <span class="contact-item"><a href="mailto:felix.muzellec@gmail.com" aria-label="Envoyer un email">felix.muzellec@gmail.com</a></span>
+                    <span class="contact-item"><a href="tel:+33637342267" aria-label="Appeler le numéro de téléphone">+33 6 37 34 22 67</a></span>
                 </div>
             </header>
 
-            <div class="profile-section">
+            <section class="profile-section" aria-label="Résumé du profil">
                 <strong>Commercial Finance & Ops Lead</strong> with 10 years of experience across technology and financial services, driven by a strong passion for all areas of finance—from strategic analysis and audit to commercial performance and automation. As an early <strong>AI adopter</strong>, I combine <strong>strong financial expertise</strong> with <strong>practical technical skills</strong> to build data-driven tools that simplify decision-making. Works closely with senior leadership to improve revenue performance and operational efficiency through clear financial insights and scalable systems.
-            </div>
+            </section>
 
-            <section class="section">
-                <h2 class="section-title">Professional Experience</h2>
+            <section class="section" aria-labelledby="exp-title">
+                <h2 class="section-title" id="exp-title">Professional Experience</h2>
 
-                <div class="entry">
+                <article class="entry" aria-labelledby="job-algo">
                     <div class="entry-header">
-                        <div class="job-title">Finance Ops Engineer</div>
-                        <div class="date-badge">2022 - 2025</div>
+                        <div class="job-title" id="job-algo">Finance Ops Engineer</div>
+                        <div class="date-badge" aria-label="Période">2022 - 2025</div>
                     </div>
                     <div class="company">Algomarketing Ltd | London (Remote)</div>
                     <div class="subsection-title">Systems Architecture & Revenue Operations</div>
@@ -477,12 +449,12 @@
                     <ul>
                         <li><strong>Spearheaded HRIS transformation</strong> by developing custom JavaScript application managing TA and People operations, then orchestrating data migration for global rollout of Pinpoint and HiBob with 100% data consistency between Finance and People teams across 5 international offices</li>
                     </ul>
-                </div>
+                </article>
 
-                <div class="entry">
+                <article class="entry" aria-labelledby="job-catalina">
                     <div class="entry-header">
-                        <div class="job-title">Senior Sales Operations Analyst</div>
-                        <div class="date-badge">2021 - 2022</div>
+                        <div class="job-title" id="job-catalina">Senior Sales Operations Analyst</div>
+                        <div class="date-badge" aria-label="Période">2021 - 2022</div>
                     </div>
                     <div class="company">Catalina Marketing | Boulogne-Billancourt, France</div>
                     <div class="subsection-title">Commercial Finance Leadership</div>
@@ -495,12 +467,12 @@
                         <li><strong>Maintained enterprise CRM data integrity</strong> across 200+ accounts and 30+ sales reps in Salesforce, ensuring high data quality and forecast accuracy within 3% variance</li>
                         <li><strong>Developed comprehensive budget models</strong> quantifying financial impact of go-to-market tactics, enabling data-driven decision-making on sales investment allocation</li>
                     </ul>
-                </div>
+                </article>
 
-                <div class="entry">
+                <article class="entry" aria-labelledby="job-egencia">
                     <div class="entry-header">
-                        <div class="job-title">FP&A Analyst</div>
-                        <div class="date-badge">2017 - 2021</div>
+                        <div class="job-title" id="job-egencia">FP&A Analyst</div>
+                        <div class="date-badge" aria-label="Période">2017 - 2021</div>
                     </div>
                     <div class="company">Egencia (Expedia Group) | Paris, France</div>
                     <div class="subsection-title">Strategic Planning & Analytics</div>
@@ -513,35 +485,35 @@
                         <li><strong>Led implementation of new compensation structure</strong> for 300-person sales and account management organization, designing incentive models to drive sales performance and align with commercial profitability targets</li>
                         <li><strong>Managed annual planning process</strong> for $1.6B sales acquisition pipeline, identifying and mitigating risk areas 90 days in advance, contributing to 96% plan attainment</li>
                     </ul>
-                </div>
+                </article>
 
-                <div class="entry">
+                <article class="entry" aria-labelledby="job-geochat">
                     <div class="entry-header">
-                        <div class="job-title">Business Analyst</div>
-                        <div class="date-badge">2016 - 2017</div>
+                        <div class="job-title" id="job-geochat">Business Analyst</div>
+                        <div class="date-badge" aria-label="Période">2016 - 2017</div>
                     </div>
                     <div class="company">Geochat | Paris, France</div>
                     <ul>
                         <li><strong>Spearheaded strategic launch</strong> within the Schoolab incubator, defining the GTM roadmap for a messaging technology startup</li>
                         <li><strong>Engineered business plans</strong> and detailed financial projections to support seed-round fundraising and investor relations</li>
                     </ul>
-                </div>
+                </article>
 
-                <div class="entry">
+                <article class="entry" aria-labelledby="job-finexsi">
                     <div class="entry-header">
-                        <div class="job-title">Junior Financial Analyst</div>
-                        <div class="date-badge">2015 - 2016</div>
+                        <div class="job-title" id="job-finexsi">Junior Financial Analyst</div>
+                        <div class="date-badge" aria-label="Période">2015 - 2016</div>
                     </div>
                     <div class="company">Finexsi | Paris, France</div>
                     <ul>
                         <li><strong>Executed statutory and internal audits</strong> for both listed and private companies across technology, retail, and industrial sectors</li>
                         <li><strong>Performed company valuations</strong> for fairness opinions in connection with private transactions and public tender offers</li>
                     </ul>
-                </div>
+                </article>
             </section>
 
-            <section class="section page-break-before">
-                <h2 class="section-title">Education & Certifications</h2>
+            <section class="section page-break-before" aria-labelledby="edu-title">
+                <h2 class="section-title" id="edu-title">Education & Certifications</h2>
                 <div class="education-entry">
                     <div class="edu-header">
                         <span class="degree">Marketing & Data Automation Certificate</span>
@@ -563,8 +535,8 @@
                 </div>
             </section>
 
-            <section class="section">
-                <h2 class="section-title">Technical Skills</h2>
+            <section class="section" aria-labelledby="skills-title">
+                <h2 class="section-title" id="skills-title">Technical Skills</h2>
                 <div class="skills-grid">
                     <div class="skill-card"><div class="card-header">Financial Systems</div><div class="tag-container"><span class="tag">Modlr</span><span class="tag">Hyperion</span><span class="tag">Callidus</span><span class="tag">Anaplan</span></div></div>
                     <div class="skill-card"><div class="card-header">CRM & Sales Ops</div><div class="tag-container"><span class="tag">Salesforce</span><span class="tag">HubSpot</span><span class="tag">Sales Analytics</span><span class="tag">ZoomInfo</span></div></div>
@@ -574,8 +546,8 @@
                 <div class="tech-note">★ Technologies marked with a star are utilized through LLM-assisted development tools.</div>
             </section>
 
-            <section class="section">
-                <h2 class="section-title">Additional Information</h2>
+            <section class="section" aria-labelledby="info-title">
+                <h2 class="section-title" id="info-title">Additional Information</h2>
                 <div class="info-grid">
                     <div class="info-card">
                         <div class="card-header">Languages</div>
@@ -607,7 +579,6 @@
         </div>
     </div>
 
-    <!-- Bouton de génération PDF via l'impression système -->
     <button class="download-btn" id="print-pdf">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
         Télécharger CV (PDF)
@@ -615,13 +586,11 @@
 
     <script>
         document.getElementById('print-pdf').addEventListener('click', function() {
-            // Affichage d'un message d'instruction temporaire
             const info = document.createElement('div');
             info.style.cssText = 'position:fixed;top:20px;left:50%;transform:translateX(-50%);background:#0d47a1;color:white;padding:15px 25px;border-radius:8px;z-index:9999;font-family:sans-serif;box-shadow:0 4px 12px rgba(0,0,0,0.2);text-align:center;';
             info.innerHTML = '⚙️ <b>Préparation du PDF...</b><br><small>Dans la fenêtre qui s\'ouvre, choisissez "Enregistrer au format PDF" comme destination.</small>';
             document.body.appendChild(info);
 
-            // Déclenchement de l'impression après un court délai
             setTimeout(() => {
                 window.print();
                 info.remove();
