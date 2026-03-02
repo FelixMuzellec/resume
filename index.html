@@ -378,6 +378,15 @@
             cursor: pointer;
             border: none;
             font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: transform 0.2s;
+        }
+
+        .download-btn:hover {
+            transform: scale(1.05);
+            background: #1565c0;
         }
 
         /* Print Optimization */
@@ -598,26 +607,25 @@
         </div>
     </div>
 
-    <button class="download-btn" id="save-html">Télécharger le fichier CV</button>
+    <!-- Bouton de génération PDF via l'impression système -->
+    <button class="download-btn" id="print-pdf">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+        Télécharger CV (PDF)
+    </button>
 
     <script>
-        document.getElementById('save-html').addEventListener('click', function() {
-            const htmlContent = document.documentElement.outerHTML;
-            const blob = new Blob([htmlContent], { type: 'text/html' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'CV_Felix_Muzellec.html';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-            
+        document.getElementById('print-pdf').addEventListener('click', function() {
+            // Affichage d'un message d'instruction temporaire
             const info = document.createElement('div');
-            info.style.cssText = 'position:fixed;top:20px;left:50%;transform:translateX(-50%);background:#2e7d32;color:white;padding:15px 25px;border-radius:8px;z-index:9999;font-family:sans-serif;box-shadow:0 4px 12px rgba(0,0,0,0.2);';
-            info.innerHTML = '✅ <b>Fichier téléchargé !</b><br>Ouvrez-le et faites Ctrl+P pour sauvegarder en PDF.';
+            info.style.cssText = 'position:fixed;top:20px;left:50%;transform:translateX(-50%);background:#0d47a1;color:white;padding:15px 25px;border-radius:8px;z-index:9999;font-family:sans-serif;box-shadow:0 4px 12px rgba(0,0,0,0.2);text-align:center;';
+            info.innerHTML = '⚙️ <b>Préparation du PDF...</b><br><small>Dans la fenêtre qui s\'ouvre, choisissez "Enregistrer au format PDF" comme destination.</small>';
             document.body.appendChild(info);
-            setTimeout(() => info.remove(), 5000);
+
+            // Déclenchement de l'impression après un court délai
+            setTimeout(() => {
+                window.print();
+                info.remove();
+            }, 1000);
         });
     </script>
 </body>
