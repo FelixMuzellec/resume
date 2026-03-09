@@ -497,23 +497,24 @@ li strong { color: var(--navy); font-weight: 600; }
   .page { box-shadow: none; width: 100%; opacity: 1; animation: none; }
   .btn-pdf { display: none !important; }
 
-  /* Tight spacing for 2-page fit */
-  .content { padding: 18px 32px 20px; }
-  .profile-text { margin-bottom: 14px; padding: 7px 12px; line-height: 1.6; }
-  .sec { margin-top: 16px; margin-bottom: 10px; }
+  /* Tight spacing for harmonious 2-page fit */
+  .content { padding: 20px 34px 24px; }
+  .profile-text { margin-bottom: 16px; padding: 8px 14px; line-height: 1.65; font-size: 8.5pt; }
+  .sec { margin-top: 18px; margin-bottom: 10px; }
   .sec.first { margin-top: 0; }
-  .job { margin-bottom: 10px; padding: 6px 12px 6px 14px; }
+  .job { margin-bottom: 12px; padding: 6px 12px 6px 14px; }
   .job-header { margin-bottom: 1px; }
   .job-context { margin-bottom: 4px; }
-  .subcat { margin: 5px 0 3px; }
-  li { margin-bottom: 2px; line-height: 1.5; }
-  .edu { margin-bottom: 7px; }
-  .skills-grid { padding: 14px 18px; gap: 14px 20px; }
-  .header-top { padding: 16px 28px 10px; }
-  .header-bottom { padding: 7px 28px 10px; }
+  .subcat { margin: 6px 0 3px; }
+  li { margin-bottom: 2px; line-height: 1.5; font-size: 7.8pt; }
+  .edu { margin-bottom: 8px; }
+  .skills-grid { padding: 14px 20px; gap: 14px 22px; margin-bottom: 2px; }
+  .break-box { padding: 9px 16px; margin-top: 4px; }
+  .header-top { padding: 18px 30px 12px; }
+  .header-bottom { padding: 8px 30px 12px; }
 
-  /* Page break: page 2 starts at Egencia */
-  .job.egencia { page-break-before: always; }
+  /* Natural flow — no forced page break */
+  .job.egencia { page-break-before: auto; }
 
   /* Prevent orphans */
   .sec { page-break-after: avoid; }
