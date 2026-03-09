@@ -20,7 +20,7 @@
   "jobTitle": "FP&A Manager",
   "description": "Finance and Revenue Operations professional with 10 years of experience in SaaS and technology companies.",
   "url": "https://felixmuzellec.github.io/resume/",
-  "sameAs": ["https://www.linkedin.com/in/félix-muzellec-97b6185a/"],
+  "sameAs": ["https://www.linkedin.com/in/f%C3%A9lix-muzellec-97b6185a/"],
   "address": { "@type": "PostalAddress", "addressLocality": "Paris", "addressCountry": "FR" },
   "knowsAbout": ["FP&A","Revenue Operations","Salesforce","Tableau","Looker","SQL","Pipeline Analytics","Gross Margin","CAC/LTV","Modlr","Callidus"]
 }
@@ -30,7 +30,7 @@
 
 <style>
 /* ════════════════════════════════════════
-   TOKENS
+   DESIGN TOKENS
 ════════════════════════════════════════ */
 :root {
   --navy:    #0A1E35;
@@ -62,12 +62,15 @@ body {
   print-color-adjust: exact;
 }
 
+/* ATS — hidden h1 readable by parsers */
 .sr-only {
   position: absolute; width: 1px; height: 1px;
   overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap;
 }
 
-/* ── BUTTON ── */
+/* ════════════════════════════════════════
+   DOWNLOAD BUTTON
+════════════════════════════════════════ */
 .btn-pdf {
   position: fixed; bottom: 28px; right: 28px; z-index: 999;
   background: var(--navy); color: var(--white);
@@ -81,9 +84,15 @@ body {
   display: flex; align-items: center; gap: 8px;
 }
 .btn-pdf::before { content: '↓'; font-size: 10pt; }
-.btn-pdf:hover { background: var(--navy-md); transform: translateY(-3px); box-shadow: 0 14px 40px rgba(10,30,53,0.3); }
+.btn-pdf:hover {
+  background: var(--navy-md);
+  transform: translateY(-3px);
+  box-shadow: 0 14px 40px rgba(10,30,53,0.3);
+}
 
-/* ── PAGE ── */
+/* ════════════════════════════════════════
+   PAGE WRAPPER
+════════════════════════════════════════ */
 @page { size: A4; margin: 0; }
 
 .page {
@@ -95,23 +104,22 @@ body {
   animation: fadeUp 0.55s cubic-bezier(0.4,0,0.2,1) 0.05s forwards;
 }
 @keyframes fadeUp {
-  from { opacity:0; transform: translateY(20px); }
-  to   { opacity:1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 /* ════════════════════════════════════════
-   HEADER — full width, 3-zone
+   HEADER — full width, 2 zones
 ════════════════════════════════════════ */
 .header {
   background: var(--navy);
-  padding: 0;
   position: relative;
   overflow: hidden;
   -webkit-print-color-adjust: exact;
   print-color-adjust: exact;
 }
 
-/* Decorative corner ring */
+/* Decorative corner rings */
 .header::before {
   content: '';
   position: absolute; top: -50px; right: -50px;
@@ -139,43 +147,56 @@ body {
   font-family: 'Playfair Display', serif;
   font-size: 32pt; font-weight: 700;
   color: var(--white); line-height: 1;
-  letter-spacing: -0.5px; margin-bottom: 7px;
+  letter-spacing: -0.5px; margin-bottom: 8px;
 }
 .name-accent { color: var(--gold-lt); }
 
+/* FIX: each tagline item is a <span.tag-item> so display:block works on mobile */
 .tagline {
+  display: flex; flex-wrap: wrap; align-items: center;
+  gap: 0;
   font-size: 7pt; color: rgba(168,196,220,0.85);
   letter-spacing: 2.8px; text-transform: uppercase; font-weight: 400;
 }
-.tagline-divider { color: var(--gold); margin: 0 8px; opacity: 0.6; }
+.tag-item { white-space: nowrap; }
+.tag-sep  { color: var(--gold); margin: 0 8px; opacity: 0.6; }
 
-/* Zone 2 — contacts + links in a single row */
+/* Zone 2 — contacts + links */
 .header-bottom {
   padding: 10px 36px 14px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 6px 0;
+  gap: 8px 0;
 }
 
 .contacts {
   display: flex;
-  gap: 22px;
+  gap: 20px;
   flex-wrap: wrap;
   align-items: center;
 }
 
+/* FIX: bullet via ::before with line-height trick — reliable on all screen sizes */
 .contact-item {
-  font-size: 7.5pt; color: rgba(168,196,220,0.85);
-  font-weight: 300; display: flex; align-items: center; gap: 5px;
+  font-size: 7.5pt;
+  color: rgba(168,196,220,0.85);
+  font-weight: 300;
+  display: flex;
+  align-items: center;
+  gap: 6px;
   line-height: 1.4;
 }
-.contact-dot {
-  width: 3px; height: 3px; border-radius: 50%;
-  background: var(--gold-lt); flex-shrink: 0; opacity: 0.8;
-  margin-top: 0;
-  align-self: center;
+.contact-item::before {
+  content: '';
+  display: inline-block;
+  flex-shrink: 0;
+  width: 3px; height: 3px;
+  border-radius: 50%;
+  background: var(--gold-lt);
+  opacity: 0.85;
+  /* No position:absolute — stays in flow, always aligned with text */
 }
 
 .header-links {
@@ -191,6 +212,7 @@ body {
 .header-links a::before { content: '→'; font-size: 6.5pt; opacity: 0.6; }
 .header-links a:hover { color: var(--gold-lt); }
 
+/* Gold separator line */
 .gold-rule {
   height: 2px;
   background: linear-gradient(90deg, var(--gold) 0%, var(--gold-lt) 25%, rgba(196,162,90,0.15) 70%, transparent 100%);
@@ -199,7 +221,7 @@ body {
 }
 
 /* ════════════════════════════════════════
-   CONTENT — single column, full width
+   CONTENT — single column full width
 ════════════════════════════════════════ */
 .content { padding: 28px 40px 36px; }
 
@@ -217,13 +239,15 @@ body {
 }
 .profile-text em { font-style: normal; font-weight: 600; color: var(--navy); }
 
-/* SECTION TITLES */
+/* ════════════════════════════════════════
+   SECTION TITLES
+════════════════════════════════════════ */
 .sec {
   display: flex; align-items: center; gap: 14px;
   margin-bottom: 16px; margin-top: 26px;
   page-break-after: avoid;
 }
-.sec:first-of-type { margin-top: 0; }
+.sec.first { margin-top: 0; }
 
 .sec h2 {
   font-family: 'Playfair Display', serif;
@@ -241,7 +265,9 @@ body {
   background: linear-gradient(90deg, rgba(154,123,58,0.5) 0%, rgba(208,220,232,0.2) 100%);
 }
 
-/* JOBS */
+/* ════════════════════════════════════════
+   JOB ENTRIES
+════════════════════════════════════════ */
 .job {
   margin-bottom: 18px;
   padding: 12px 16px 12px 18px;
@@ -250,7 +276,10 @@ body {
   page-break-inside: avoid;
   position: relative;
 }
-.job:hover { border-left-color: var(--gold); background: rgba(154,123,58,0.02); }
+.job:hover {
+  border-left-color: var(--gold);
+  background: rgba(154,123,58,0.02);
+}
 
 /* Timeline dot */
 .job::before {
@@ -260,7 +289,10 @@ body {
   background: var(--white); border: 2px solid var(--rule);
   transition: border-color var(--trans), background var(--trans);
 }
-.job:hover::before { border-color: var(--gold-lt); background: var(--gold-xs); }
+.job:hover::before {
+  border-color: var(--gold-lt);
+  background: var(--gold-xs);
+}
 
 .job-header {
   display: flex; justify-content: space-between;
@@ -280,8 +312,14 @@ body {
   background: var(--light); border: 1px solid var(--rule);
   padding: 2px 8px; border-radius: 10px;
 }
-.job-org { font-size: 8pt; color: var(--navy-lt); font-weight: 600; margin-bottom: 2px; letter-spacing: 0.2px; }
-.job-context { font-size: 7pt; color: var(--muted); font-style: italic; margin-bottom: 7px; }
+.job-org {
+  font-size: 8pt; color: var(--navy-lt);
+  font-weight: 600; margin-bottom: 2px; letter-spacing: 0.2px;
+}
+.job-context {
+  font-size: 7pt; color: var(--muted);
+  font-style: italic; margin-bottom: 7px;
+}
 
 .subcat {
   font-size: 6pt; font-weight: 600; color: var(--gold);
@@ -297,13 +335,14 @@ body {
 
 ul { list-style: none; padding: 0; }
 li {
-  font-size: 8pt; color: #1E2E3E; line-height: 1.6;
+  font-size: 8pt; color: #1E2E3E; line-height: 1.65;
   padding-left: 14px; position: relative;
   margin-bottom: 4px; font-weight: 300;
 }
+/* FIX: CSS diamond bullet — no Unicode, perfectly rendered in all browsers + print */
 li::before {
   content: '';
-  position: absolute; left: 0; top: 7px;
+  position: absolute; left: 1px; top: 6px;
   width: 5px; height: 5px;
   border-radius: 1px;
   background: var(--gold);
@@ -315,7 +354,7 @@ li::before {
 li strong { color: var(--navy); font-weight: 600; }
 
 /* ════════════════════════════════════════
-   SKILLS SECTION (was sidebar, now bottom)
+   SKILLS GRID
 ════════════════════════════════════════ */
 .skills-grid {
   display: grid;
@@ -326,18 +365,17 @@ li strong { color: var(--navy); font-weight: 600; }
   border-left: 3px solid var(--gold);
   padding: 22px 26px;
   margin-bottom: 4px;
+  page-break-inside: avoid;
   -webkit-print-color-adjust: exact;
   print-color-adjust: exact;
-  page-break-inside: avoid;
 }
-
-.skill-block {}
 
 .skill-label {
   font-size: 5.5pt; font-weight: 600; color: var(--gold);
   text-transform: uppercase; letter-spacing: 2.5px;
   margin-bottom: 7px; padding-bottom: 4px;
-  border-bottom: 1px solid var(--rule); display: block;
+  border-bottom: 1px solid var(--rule);
+  display: block;
 }
 
 .pills { display: flex; flex-wrap: wrap; gap: 4px; }
@@ -350,20 +388,36 @@ li strong { color: var(--navy); font-weight: 600; }
 }
 .skill-pill:hover { border-color: var(--gold); }
 
-.lang-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px; }
+.lang-row {
+  display: flex; justify-content: space-between;
+  align-items: baseline; margin-bottom: 4px;
+}
 .lang-name { font-size: 7.5pt; color: var(--text); }
 .lang-level { font-size: 6.5pt; color: var(--muted); font-style: italic; }
 
-.footnote-small { font-size: 6pt; color: var(--muted); font-style: italic; margin-top: 5px; }
+.footnote-small {
+  font-size: 6pt; color: var(--muted);
+  font-style: italic; margin-top: 5px;
+}
 
-/* EDUCATION */
+/* ════════════════════════════════════════
+   EDUCATION
+════════════════════════════════════════ */
 .edu { margin-bottom: 12px; page-break-inside: avoid; }
-.edu h3 { font-family: 'Playfair Display', serif; font-size: 10pt; font-weight: 600; color: var(--navy); }
+.edu h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 10pt; font-weight: 600; color: var(--navy);
+}
 .edu-meta   { font-size: 7.5pt; color: var(--navy-lt); margin: 2px 0; font-weight: 400; }
 .edu-detail { font-size: 7.5pt; color: var(--text); font-weight: 300; }
-.edu-thesis { font-size: 6.5pt; color: var(--muted); font-style: italic; margin-top: 3px; border-left: 2px solid var(--rule); padding-left: 8px; }
+.edu-thesis {
+  font-size: 6.5pt; color: var(--muted); font-style: italic;
+  margin-top: 3px; border-left: 2px solid var(--rule); padding-left: 8px;
+}
 
-/* CAREER BREAK */
+/* ════════════════════════════════════════
+   CAREER BREAK
+════════════════════════════════════════ */
 .break-box {
   display: flex; align-items: center; gap: 16px;
   background: linear-gradient(135deg, var(--light) 0%, #F9FAFB 100%);
@@ -373,8 +427,11 @@ li strong { color: var(--navy); font-weight: 600; }
   -webkit-print-color-adjust: exact;
   print-color-adjust: exact;
 }
-.break-year { font-family: 'Playfair Display', serif; font-size: 14pt; color: var(--gold); font-weight: 700; line-height: 1; }
-.break-divider { width: 1px; height: 28px; background: var(--rule); }
+.break-year {
+  font-family: 'Playfair Display', serif;
+  font-size: 14pt; color: var(--gold); font-weight: 700; line-height: 1;
+}
+.break-divider { width: 1px; height: 28px; background: var(--rule); flex-shrink: 0; }
 .break-text { font-size: 8pt; color: var(--muted); font-style: italic; }
 
 /* ════════════════════════════════════════
@@ -385,9 +442,11 @@ li strong { color: var(--navy); font-weight: 600; }
   .page { width: 100%; box-shadow: none; animation: none; opacity: 1; }
   .btn-pdf { bottom: 16px; right: 16px; padding: 10px 16px; font-size: 7.5pt; }
   .name { font-size: 24pt; }
-  .tagline { font-size: 6.5pt; letter-spacing: 2px; }
   .header-top { padding: 18px 22px 12px; }
-  .header-bottom { padding: 10px 22px 14px; flex-direction: column; align-items: flex-start; gap: 8px; }
+  .header-bottom {
+    padding: 10px 22px 14px;
+    flex-direction: column; align-items: flex-start; gap: 8px;
+  }
   .content { padding: 20px 22px 28px; }
   html { font-size: 10.5pt; }
   li { font-size: 9pt; }
@@ -398,26 +457,35 @@ li strong { color: var(--navy); font-weight: 600; }
 
 /* ── MOBILE (≤ 480px) ── */
 @media screen and (max-width: 480px) {
-  .name { font-size: 19pt; }
+  .name { font-size: 20pt; }
+
+  /* FIX: tagline — each .tag-item on its own line, separators hidden */
   .tagline {
-    display: block;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+    letter-spacing: 2px;
     font-size: 6pt;
-    letter-spacing: 1.5px;
-    line-height: 1.8;
   }
-  .tagline-divider { display: none; }
-  .tagline span:not(.tagline-divider) { display: block; }
-  .header-top { padding: 16px 18px 10px; }
+  .tag-sep { display: none; }
+  .tag-item { display: block; }
+
+  .header-top { padding: 14px 18px 10px; }
   .header-bottom { padding: 8px 18px 14px; gap: 6px; }
-  .contacts { flex-direction: column; gap: 4px; }
+
+  /* FIX: contacts stacked vertically, inline dot stays perfectly aligned */
+  .contacts { flex-direction: column; gap: 5px; }
   .contact-item { font-size: 7pt; }
-  .header-links { flex-direction: column; gap: 3px; }
+
+  .header-links { flex-direction: column; gap: 4px; }
   .header-links a { font-size: 7pt; }
+
   .content { padding: 14px 16px 22px; }
   .skills-grid { grid-template-columns: 1fr 1fr; gap: 12px 16px; padding: 14px; }
   .sec h2 { font-size: 9.5pt; }
   .job-header h3 { font-size: 10pt; }
   .job { padding-left: 10px; }
+  .btn-pdf { padding: 10px 14px; font-size: 7pt; }
 }
 
 /* ════════════════════════════════════════
@@ -428,22 +496,22 @@ li strong { color: var(--navy); font-weight: 600; }
   .page { box-shadow: none; width: 100%; opacity: 1; animation: none; }
   .btn-pdf { display: none !important; }
 
-  /* Page break: end of page 1 = after Catalina, page 2 starts at Egencia */
+  /* Page break: page 2 starts at Egencia */
   .job.egencia { page-break-before: always; }
 
-  /* Keep blocks together */
+  /* Prevent orphans */
   .sec { page-break-after: avoid; }
   .job, .edu, .break-box, .skills-grid { page-break-inside: avoid; }
 
-  /* Clean up interactive styles */
+  /* Strip interactive styles */
   .job { border-left: none !important; background: none !important; }
   .job::before { display: none; }
-  .job-dates { background: none; border: none; padding: 0; }
+  .job-dates { background: none !important; border: none !important; padding: 0; }
   .job:hover .job-header h3 { color: var(--navy); }
-  .skill-pill:hover { border-color: var(--rule); }
+  .skill-pill { transition: none; }
 
-  /* Force color preservation */
-  .header, .gold-rule, .sec h2, .skills-grid, .break-box {
+  /* Preserve colours */
+  * {
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
   }
@@ -459,35 +527,43 @@ li strong { color: var(--navy); font-weight: 600; }
 
   <!-- ══ HEADER ══ -->
   <header class="header">
+
+    <!-- Zone 1 : name + tagline -->
     <div class="header-top">
       <div class="name">F&eacute;lix <span class="name-accent">Muzellec</span></div>
       <div class="tagline">
-        Finance &amp; Revenue Operations
-        <span class="tagline-divider">&middot;</span> FP&amp;A
-        <span class="tagline-divider">&middot;</span> Commercial Performance
-        <span class="tagline-divider">&middot;</span> Systems Architecture
+        <span class="tag-item">Finance &amp; Revenue Operations</span>
+        <span class="tag-sep">&middot;</span>
+        <span class="tag-item">FP&amp;A</span>
+        <span class="tag-sep">&middot;</span>
+        <span class="tag-item">Commercial Performance</span>
+        <span class="tag-sep">&middot;</span>
+        <span class="tag-item">Systems Architecture</span>
       </div>
     </div>
+
+    <!-- Zone 2 : contacts + links -->
     <div class="header-bottom">
       <div class="contacts">
-        <div class="contact-item"><span class="contact-dot"></span>Bourg-la-Reine, France</div>
-        <div class="contact-item"><span class="contact-dot"></span>felix.muzellec&#x40;gmail.com</div>
-        <div class="contact-item"><span class="contact-dot"></span>+33 6 37 34 22 67</div>
-        <div class="contact-item"><span class="contact-dot"></span>Hybrid &amp; on-site &mdash; Paris</div>
+        <div class="contact-item">Bourg-la-Reine, France</div>
+        <div class="contact-item">felix.muzellec&#x40;gmail.com</div>
+        <div class="contact-item">+33 6 37 34 22 67</div>
+        <div class="contact-item">Hybrid &amp; on-site &mdash; Paris</div>
       </div>
       <div class="header-links">
         <a href="https://www.linkedin.com/in/f%C3%A9lix-muzellec-97b6185a/" target="_blank" rel="noopener">linkedin.com/in/felix-muzellec</a>
         <a href="https://felixmuzellec.github.io/resume/" target="_blank" rel="noopener">felixmuzellec.github.io/resume</a>
       </div>
     </div>
+
   </header>
   <div class="gold-rule"></div>
 
   <!-- ══ CONTENT ══ -->
-  <div class="content">
+  <main class="content">
 
     <!-- PROFILE -->
-    <div class="sec"><h2>Profile</h2><div class="sec-rule"></div></div>
+    <div class="sec first"><h2>Profile</h2><div class="sec-rule"></div></div>
     <p class="profile-text">Finance and Revenue Operations professional with <em>10 years of experience</em> across technology and financial services. Specialised in <em>commercial performance and top-line analysis</em> &mdash; revenue, gross margin, pipeline analytics &mdash; with a proven ability to build the systems and tools that make financial insight actionable. As an early AI adopter, I combine rigorous financial expertise with practical technical skills to deliver scalable, data-driven solutions. Working closely with senior leadership to drive revenue performance and operational clarity.</p>
 
     <!-- EXPERIENCE -->
@@ -538,7 +614,7 @@ li strong { color: var(--navy); font-weight: 600; }
       </ul>
     </article>
 
-    <!-- EGENCIA — PAGE BREAK BEFORE ON PRINT -->
+    <!-- EGENCIA — page break before on print -->
     <article class="job egencia">
       <div class="job-header">
         <h3>FP&amp;A Analyst</h3>
@@ -601,7 +677,7 @@ li strong { color: var(--navy); font-weight: 600; }
       <div class="edu-thesis">Thesis: The Impact of Public Funding on the Performance of the French Venture Capital Market</div>
     </div>
 
-    <!-- SKILLS — 4-column grid -->
+    <!-- SKILLS -->
     <div class="sec"><h2>Skills &amp; Languages</h2><div class="sec-rule"></div></div>
 
     <div class="skills-grid">
@@ -661,10 +737,10 @@ li strong { color: var(--navy); font-weight: 600; }
       <div class="break-text">Sabbatical following personal bereavement.</div>
     </div>
 
-  </div><!-- /content -->
-</div><!-- /page -->
+  </main>
+</div>
 
-<!-- ATS keyword block — invisible, readable by parsers -->
+<!-- ATS keyword block — invisible to humans, readable by parsers -->
 <div aria-hidden="true" style="position:absolute;left:-9999px;top:-9999px;font-size:1px;color:transparent;overflow:hidden;">
 FP&amp;A Manager Finance Business Partner Revenue Operations RevOps Sales Operations Commercial Finance Gross Margin Forecasting Pipeline Analytics Budget Planning Variance Analysis CAC LTV Salesforce Tableau Looker SQL Modlr Callidus HubSpot Zapier n8n Python JavaScript EPM Business Intelligence KPI Dashboard SaaS Scale-up Technology Paris Île-de-France France NEOMA Business School Expedia Group Egencia Algomarketing Catalina Marketing Incentive Compensation Annual Planning Strategic Planning Data Automation Systems Architecture
 </div>
