@@ -188,15 +188,13 @@ body {
   gap: 6px;
   line-height: 1.4;
 }
-.contact-item::before {
-  content: '';
+.contact-dot {
   display: inline-block;
   flex-shrink: 0;
   width: 3px; height: 3px;
   border-radius: 50%;
   background: var(--gold-lt);
   opacity: 0.85;
-  /* No position:absolute — stays in flow, always aligned with text */
 }
 
 .header-links {
@@ -545,10 +543,10 @@ li strong { color: var(--navy); font-weight: 600; }
     <!-- Zone 2 : contacts + links -->
     <div class="header-bottom">
       <div class="contacts">
-        <div class="contact-item">Bourg-la-Reine, France</div>
-        <div class="contact-item">felix.muzellec&#x40;gmail.com</div>
-        <div class="contact-item">+33 6 37 34 22 67</div>
-        <div class="contact-item">Hybrid &amp; on-site &mdash; Paris</div>
+        <div class="contact-item"><span class="contact-dot"></span>Bourg-la-Reine, France</div>
+        <div class="contact-item"><span class="contact-dot"></span>felix.muzellec&#x40;gmail.com</div>
+        <div class="contact-item"><span class="contact-dot"></span>+33 6 37 34 22 67</div>
+        <div class="contact-item"><span class="contact-dot"></span>Hybrid &amp; on-site &mdash; Paris</div>
       </div>
       <div class="header-links">
         <a href="https://www.linkedin.com/in/f%C3%A9lix-muzellec-97b6185a/" target="_blank" rel="noopener">linkedin.com/in/felix-muzellec</a>
