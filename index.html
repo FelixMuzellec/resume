@@ -306,10 +306,11 @@ body {
 .job:hover .job-header h3 { color: var(--navy-lt); }
 
 .job-dates {
-  font-size: 7pt; color: var(--muted); font-style: italic;
+  font-size: 8.5pt; color: var(--navy-lt); font-style: italic;
   white-space: nowrap;
-  background: var(--light); border: 1px solid var(--rule);
-  padding: 2px 8px; border-radius: 10px;
+  background: var(--light);
+  padding: 2px 8px;
+  font-weight: 600;
 }
 .job-org {
   font-size: 8pt; color: var(--navy-lt);
@@ -318,18 +319,19 @@ body {
 .job-context {
   font-size: 7pt; color: var(--muted);
   font-style: italic; margin-bottom: 7px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 
 .subcat {
-  font-size: 6pt; font-weight: 600; color: var(--gold);
-  text-transform: uppercase; letter-spacing: 2px;
+  font-size: 7.5pt; font-weight: 700; color: var(--gold);
+  text-transform: uppercase; letter-spacing: 1.8px;
   margin: 9px 0 5px;
   display: flex; align-items: center; gap: 8px;
 }
 .subcat::after {
   content: '';
   flex: 1; height: 1px;
-  background: linear-gradient(90deg, rgba(154,123,58,0.25) 0%, transparent 100%);
+  background: linear-gradient(90deg, rgba(154,123,58,0.35) 0%, transparent 100%);
 }
 
 ul { list-style: none; padding: 0; }
@@ -563,7 +565,7 @@ li strong { color: var(--navy); font-weight: 600; }
 
     <!-- PROFILE -->
     <div class="sec first"><h2>Profile</h2><div class="sec-rule"></div></div>
-    <p class="profile-text">Finance and Revenue Operations professional with <em>10 years of experience</em> across technology and financial services. Specialised in <em>commercial performance and top-line analysis</em> &mdash; revenue, gross margin, pipeline analytics &mdash; with a proven ability to build the systems and tools that make financial insight actionable. As an early AI adopter, I combine rigorous financial expertise with practical technical skills to deliver scalable, data-driven solutions. Working closely with senior leadership to drive revenue performance and operational clarity.</p>
+    <p class="profile-text">Finance and Revenue Operations professional with <em>10 years of experience</em> across technology and financial services. Specialised in <em>commercial performance and top-line analysis</em> &mdash; revenue, gross margin, pipeline analytics &mdash; with a proven ability to build the systems and tools that make financial insight actionable. An <em>early and active AI adopter</em>, I integrate AI-powered tooling into financial workflows to accelerate analysis, automate reporting and surface insights faster. I combine rigorous financial expertise with practical technical skills to deliver scalable, data-driven solutions &mdash; working closely with senior leadership to drive revenue performance and operational clarity.</p>
 
     <!-- EXPERIENCE -->
     <div class="sec"><h2>Professional Experience</h2><div class="sec-rule"></div></div>
@@ -578,14 +580,13 @@ li strong { color: var(--navy); font-weight: 600; }
       <div class="job-context">B2B marketing &amp; MarTech consultancy &mdash; 100+ experts, 27 countries, clients include Google, Stripe and Cisco.</div>
       <div class="subcat">Systems Architecture &amp; Revenue Operations</div>
       <ul>
-        <li>Architected enterprise-grade Salesforce infrastructure integrated with ZoomInfo, serving both Sales and Customer Success teams, reducing lead enrichment time by <strong>90%</strong> through automated multi-object workflows spanning the full commercial lifecycle from lead capture through contract generation and renewal forecasting.</li>
+        <li>Built and owned the Salesforce/ZoomInfo commercial infrastructure serving Sales and Customer Success — automating the full cycle from lead capture to contract generation and renewal forecasting, cutting lead enrichment time by <strong>90%</strong>.</li>
         <li>Designed the commercial analytics layer of the EPM implementation on Modlr (SQL/JavaScript-based) &mdash; defining KPIs, gross margin frameworks and multi-level reporting for major accounts including Google and Stripe &mdash; while overseeing project delivery to ensure successful rollout across <strong>200+ active engagements</strong>.</li>
         <li>Eliminated revenue leakage by deploying validation protocols across the end-to-end procurement lifecycle (SOW/PO), ensuring <strong>100% billing accuracy</strong> and recovering <strong>$150K+</strong> in previously unbilled services.</li>
       </ul>
       <div class="subcat">Strategic Intelligence &amp; Analytics</div>
       <ul>
         <li>Built Looker-based reporting framework serving as primary decision-support layer, delivering client-facing BI dashboards providing real-time transparency on resource allocation and project spend per consultant profile.</li>
-        <li>Deployed automated NPS tracking and Sales/Customer KPIs, enabling leadership to identify at-risk accounts <strong>60 days earlier</strong> than previous manual processes.</li>
       </ul>
       <div class="subcat">HR Technology &amp; Operations</div>
       <ul>
@@ -599,8 +600,8 @@ li strong { color: var(--navy); font-weight: 600; }
         <h3>Senior Sales Operations Analyst</h3>
         <div class="job-dates">2021 &ndash; 2022</div>
       </div>
-      <div class="job-org">Catalina Marketing &middot; Boulogne-Billancourt</div>
-      <div class="job-context">Global shopper intelligence &amp; data-driven media for CPG brands and retailers &mdash; $310M revenue, operations across US, Europe and Japan.</div>
+      <div class="job-org">Catalina Marketing Europe &middot; Boulogne-Billancourt</div>
+      <div class="job-context">Data-driven shopper media for CPG brands &amp; retailers &mdash; $310M revenue across US, Europe and Japan.</div>
       <div class="subcat">Commercial Finance Leadership</div>
       <ul>
         <li>Designed and owned European Gross Margin forecasting framework across <strong>4 markets</strong>, identifying <strong>&euro;2M+</strong> in margin improvement opportunities through systematic variance analysis.</li>
@@ -609,7 +610,7 @@ li strong { color: var(--navy); font-weight: 600; }
       <div class="subcat">CRM &amp; Sales Efficiency</div>
       <ul>
         <li>Maintained CRM data integrity across <strong>200+ accounts</strong> and <strong>30+ sales reps</strong> in Salesforce, ensuring forecast accuracy within <strong>3% variance</strong>.</li>
-        <li>Developed budget models quantifying financial impact of go-to-market tactics, enabling data-driven decisions on sales investment allocation.</li>
+        <li>Developed budget models quantifying financial impact of go-to-market tactics across retail and CPG segments, enabling data-driven decisions on sales investment allocation.</li>
       </ul>
     </article>
 
@@ -628,8 +629,8 @@ li strong { color: var(--navy); font-weight: 600; }
       </ul>
       <div class="subcat">Commercial Operations at Scale</div>
       <ul>
-        <li>Served as Finance partner for global compensation, managing <strong>20+ incentive plans</strong> across a <strong>600-person</strong> Sales &amp; Account Management organisation (EMEA, AMER, APAC) through the full implementation of Callidus, ensuring accurate monthly and quarterly payouts.</li>
-        <li>Managed annual planning process for <strong>$1.6B new sales gross bookings</strong> pipeline &mdash; <strong>96% plan attainment</strong>, with risk mitigation 90 days in advance.</li>
+        <li>Served as Finance partner for global compensation, managing <strong>20+ incentive plans</strong> across a <strong>600-person</strong> worldwide Sales &amp; Account Management organisation through the full implementation of Callidus, ensuring accurate monthly and quarterly payouts.</li>
+        <li>Managed the global annual planning process for <strong>$1.6B new sales gross bookings</strong> pipeline across all regions and segments &mdash; <strong>96% plan attainment</strong>, with risk mitigation 90 days in advance.</li>
       </ul>
     </article>
 
@@ -733,7 +734,7 @@ li strong { color: var(--navy); font-weight: 600; }
     <div class="break-box">
       <div class="break-year">2025</div>
       <div class="break-divider"></div>
-      <div class="break-text">Sabbatical following personal bereavement.</div>
+      <div class="break-text">Career break.</div>
     </div>
 
   </main>
