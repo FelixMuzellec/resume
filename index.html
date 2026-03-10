@@ -359,7 +359,7 @@ li strong { color: var(--navy); font-weight: 600; }
 ════════════════════════════════════════ */
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: 1.1fr 1.1fr 0.8fr 1.2fr;
   gap: 20px 28px;
   background: var(--light);
   border: 1px solid var(--rule);
@@ -392,8 +392,9 @@ li strong { color: var(--navy); font-weight: 600; }
 .lang-row {
   display: flex; justify-content: space-between;
   align-items: baseline; margin-bottom: 4px;
+  flex-wrap: wrap; gap: 2px 8px;
 }
-.lang-name { font-size: 7.5pt; color: var(--text); }
+.lang-name { font-size: 7.5pt; color: var(--text); white-space: nowrap; }
 .lang-level { font-size: 6.5pt; color: var(--muted); font-style: italic; }
 
 .footnote-small {
@@ -739,8 +740,8 @@ li strong { color: var(--navy); font-weight: 600; }
         <div class="lang-row"><span class="lang-name">Economic Policy</span></div>
         <div class="lang-row"><span class="lang-name">Emerging Tech &amp; AI</span></div>
         <div class="lang-row"><span class="lang-name">Scuba Diving</span><span class="lang-level">CMAS 3, Adv Nitrox</span></div>
-        <div class="lang-row"><span class="lang-name">Photography</span><span class="lang-level">Underwater, Wildlife &amp; Portraits</span></div>
-        <div class="lang-row"><span class="lang-name">Handball</span><span class="lang-level">15 yrs, French Univ. Championship, Pré-Nat</span></div>
+        <div class="lang-row"><span class="lang-name">Photography</span><span class="lang-level">Underwater, Wildlife, Portrait</span></div>
+        <div class="lang-row"><span class="lang-name">Handball</span><span class="lang-level">15 yrs, Pré-Nat</span></div>
       </div>
 
     </div>
