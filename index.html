@@ -319,7 +319,6 @@ body {
 .job-context {
   font-size: 7pt; color: var(--muted);
   font-style: italic; margin-bottom: 7px;
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 
 .subcat {
@@ -359,7 +358,7 @@ li strong { color: var(--navy); font-weight: 600; }
 ════════════════════════════════════════ */
 .skills-grid {
   display: grid;
-  grid-template-columns: 1.1fr 1.1fr 0.8fr 1.2fr;
+  grid-template-columns: 1fr 1fr 0.75fr 1.4fr;
   gap: 20px 28px;
   background: var(--light);
   border: 1px solid var(--rule);
@@ -495,24 +494,24 @@ li strong { color: var(--navy); font-weight: 600; }
   .page { box-shadow: none; width: 100%; opacity: 1; animation: none; }
   .btn-pdf { display: none !important; }
 
-  /* Tight spacing for harmonious 2-page fit */
-  .content { padding: 20px 34px 24px; }
+  /* Balanced spacing — less condensed */
+  .content { padding: 22px 36px 24px; }
   .profile-text { margin-bottom: 16px; padding: 8px 14px; line-height: 1.65; font-size: 8.5pt; }
   .sec { margin-top: 18px; margin-bottom: 10px; }
   .sec.first { margin-top: 0; }
-  .job { margin-bottom: 12px; padding: 6px 12px 6px 14px; }
-  .job-header { margin-bottom: 1px; }
+  .job { margin-bottom: 14px; padding: 5px 12px 5px 14px; }
+  .job-header { margin-bottom: 2px; }
   .job-context { margin-bottom: 4px; }
   .subcat { margin: 6px 0 3px; }
   li { margin-bottom: 2px; line-height: 1.5; font-size: 7.8pt; }
-  .edu { margin-bottom: 8px; }
-  .skills-grid { padding: 14px 20px; gap: 14px 22px; margin-bottom: 2px; }
-  .break-box { padding: 9px 16px; margin-top: 4px; }
+  .edu { margin-bottom: 10px; }
+  .skills-grid { padding: 14px 20px; gap: 14px 20px; margin-bottom: 4px; grid-template-columns: 1fr 1fr 0.75fr 1.4fr; }
+  .break-box { padding: 4px 12px; margin-top: 4px; }
   .header-top { padding: 18px 30px 12px; }
   .header-bottom { padding: 8px 30px 12px; }
 
-  /* Natural flow — no forced page break */
-  .job.egencia { page-break-before: auto; }
+  /* Page 2 starts at Egencia */
+  .job.egencia { page-break-before: always; }
 
   /* Prevent orphans */
   .sec { page-break-after: avoid; }
@@ -566,7 +565,7 @@ li strong { color: var(--navy); font-weight: 600; }
         <div class="contact-item">Hybrid &amp; on-site &mdash; Paris</div>
       </div>
       <div class="header-links">
-        <a href="https://www.linkedin.com/in/f%C3%A9lix-muzellec-97b6185a/" target="_blank" rel="noopener">linkedin.com/in/f%C3%A9lix-muzellec</a>
+        <a href="https://www.linkedin.com/in/f%C3%A9lix-muzellec-97b6185a/" target="_blank" rel="noopener">linkedin.com/in/félix-muzellec</a>
         <a href="https://felixmuzellec.github.io/resume/" target="_blank" rel="noopener">felixmuzellec.github.io/resume</a>
       </div>
     </div>
@@ -578,11 +577,10 @@ li strong { color: var(--navy); font-weight: 600; }
   <main class="content">
 
     <!-- PROFILE -->
-    <div class="sec first"><h2>Profile</h2><div class="sec-rule"></div></div>
-    <p class="profile-text">Finance and Revenue Operations professional with <em>10 years of experience</em> across technology and financial services. Specialised in <em>commercial performance and top-line analysis</em> &mdash; revenue, gross margin, pipeline analytics &mdash; with a proven ability to build the systems and tools that make financial insight actionable. An <em>early and active AI adopter</em>, I integrate AI-powered tooling into financial workflows to accelerate analysis, automate reporting and surface insights faster. I combine rigorous financial expertise with practical technical skills to deliver scalable, data-driven solutions &mdash; working closely with senior leadership to drive revenue performance and operational clarity.</p>
+    <p class="profile-text" style="margin-top:4px;">Finance and Revenue Operations professional with <em>10 years of experience</em> across technology and financial services. Specialised in <em>commercial performance and top-line analysis</em> &mdash; revenue, gross margin, pipeline analytics &mdash; with a proven ability to build the systems and tools that make financial insight actionable. An <em>early and active AI adopter</em>, I integrate AI-powered tooling into financial workflows to accelerate analysis, automate reporting and surface insights faster. I combine rigorous financial expertise with practical technical skills to deliver scalable, data-driven solutions &mdash; working closely with senior leadership to drive revenue performance and operational clarity.</p>
 
     <!-- EXPERIENCE -->
-    <div class="sec"><h2>Professional Experience</h2><div class="sec-rule"></div></div>
+    <div class="sec first"><h2>Professional Experience</h2><div class="sec-rule"></div></div>
 
     <!-- ALGOMARKETING -->
     <article class="job">
