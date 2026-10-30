@@ -1,270 +1,762 @@
-<!doctype html>
-<html lang="fr">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-CtOJd3alnK2p+Rf9wOxbAsZnotTzKbjmMoCOajHU2N8='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'self'; manifest-src 'self'; worker-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Guides de pêche du bar</title>
-<meta name="description" content="Pêche du bar aux leurres : sept guides en Finistère et dans la Manche, recherche de spot par nom. Marée calculée, météo par spot, analyse de photos.">
-<meta name="theme-color" content="#020617">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Pêche bar">
-<!-- Une seule application installable : cet accueil et les guides partagent ce manifeste. -->
-<link rel="manifest" href="manifest.json">
-<link rel="icon" type="image/png" href="icon-192.png">
-<link rel="apple-touch-icon" href="icon-maskable.png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Félix Muzellec — FP&A Manager and Revenue Operations specialist with 10 years of experience in SaaS and technology. Based in Paris. Expert in Salesforce, Tableau, Looker, SQL, pipeline analytics, gross margin forecasting, workforce planning, talent analytics and commercial performance.">
+<meta name="keywords" content="FP&A Manager, Finance Business Partner, Revenue Operations, RevOps, Sales Operations, Commercial Finance, Pipeline Analytics, Gross Margin, Forecasting, Salesforce, Tableau, Looker, SQL, Modlr, Callidus, HubSpot, CAC LTV, SaaS Finance, Scale-up, Paris, Île-de-France, NEOMA, Expedia, Egencia, Algomarketing, Catalina Marketing, Finance Operations, Systems Architecture, Data Automation, EPM, Business Intelligence, BI Dashboard, KPI, Incentive Compensation, Annual Planning, Workforce Planning, Talent Analytics, Hiring Pipeline, Interview-to-Hire, Consultant Utilisation, Labour Market, Programme Structures, Commercial Reporting, Sales Velocity, Win Rate, Pipeline Health">
+<meta name="author" content="Félix Muzellec">
+<meta property="og:title" content="Félix Muzellec — FP&A Manager | Revenue Operations | Paris">
+<meta property="og:description" content="Finance and Revenue Operations professional with 10 years of experience across SaaS and technology. Salesforce, Tableau, Looker, SQL, pipeline analytics, gross margin, CAC/LTV.">
+<meta property="og:type" content="profile">
+<link rel="canonical" href="https://felixmuzellec.github.io/resume/">
+<title>Félix Muzellec — FP&A Manager | Revenue Operations | Paris</title>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Félix Muzellec",
+  "jobTitle": "FP&A Manager",
+  "description": "Finance and Revenue Operations professional with 10 years of experience in SaaS and technology companies.",
+  "url": "https://felixmuzellec.github.io/resume/",
+  "sameAs": ["https://www.linkedin.com/in/f%C3%A9lix-muzellec-97b6185a/"],
+  "address": { "@type": "PostalAddress", "addressLocality": "Paris", "addressCountry": "FR" },
+  "knowsAbout": ["FP&A","Revenue Operations","Salesforce","Tableau","Looker","SQL","Pipeline Analytics","Gross Margin","CAC/LTV","Modlr","Callidus"]
+}
+</script>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+
 <style>
-  :root { color-scheme: dark; }
-  [hidden] { display: none !important; }
-  body { margin: 0; background: #020617; color: #e2e8f0; font: 15px/1.55 system-ui, -apple-system, sans-serif; }
-  main { max-width: 560px; margin: 0 auto; padding: calc(28px + env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) 48px max(16px, env(safe-area-inset-left)); }
-  h1 { font-size: 22px; margin: 0 0 4px; text-wrap: balance; }
-  p.sub { color: #94a3b8; margin: 0 0 18px; font-size: 13px; }
-  /* Recherche d'un spot par son nom, sa commune ou son guide */
-  #search { margin: 0 0 22px; }
-  #search label { display: block; font-weight: 700; font-size: 15px; margin-bottom: 6px; }
-  #search .hint { font-weight: 500; font-size: 13px; color: #94a3b8; }
-  #q { box-sizing: border-box; width: 100%; min-height: 50px; padding: 10px 14px; border: 1px solid #334155; border-radius: 12px;
-       background: #0b1626; color: #f1f5f9; font: 16px system-ui, -apple-system, sans-serif; }
-  #q::placeholder { color: #8a9bb1; }
-  #q:focus { border-color: #38bdf8; outline: 2px solid #38bdf8; outline-offset: 1px; }
-  #near { display: block; width: 100%; min-height: 48px; margin-top: 8px; border: 1px solid #0ea5e9; border-radius: 12px;
-          background: rgba(14,165,233,0.12); color: #e0f2fe; font: 700 15px system-ui, -apple-system, sans-serif; cursor: pointer; }
-  #near:disabled { opacity: 0.85; cursor: progress; }
-  #count { margin: 8px 2px 0; font-size: 13px; color: #94a3b8; }
-  #count:empty { display: none; }
-  #results { list-style: none; margin: 8px 0 0; padding: 0; border: 1px solid #1e293b; border-radius: 12px; overflow: hidden; }
-  #results li + li { border-top: 1px solid #1e293b; }
-  #results a { display: flex; gap: 12px; align-items: center; min-height: 56px; padding: 10px 14px; color: inherit; text-decoration: none; background: rgba(10,20,38,0.85); }
-  #results a:hover, #results a:focus-visible { background: #0b2a42; }
-  #results img { width: 32px; height: 32px; border-radius: 8px; flex-shrink: 0; }
-  #results .t { min-width: 0; }
-  #results strong { display: block; font-size: 15.5px; }
-  #results .s { display: block; color: #cbd5e1; font-size: 13px; }
-  #results .g { display: block; color: #94a3b8; font-size: 12.5px; }
-  #results .d { display: block; color: #7dd3fc; font-size: 13px; font-weight: 700; font-variant-numeric: tabular-nums; }
-  /* Guides regroupés par département */
-  section.dept { margin: 0 0 18px; }
-  section.dept h2 { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; font-size: 17px; margin: 0 0 10px; }
-  section.dept h2 small { font-size: 12.5px; font-weight: 600; color: #94a3b8; }
-  a.card { display: flex; gap: 14px; align-items: center; padding: 14px 16px; margin-bottom: 10px; border: 1px solid #1e293b; border-radius: 12px;
-           background: rgba(10,20,38,0.8); color: inherit; text-decoration: none; }
-  a.card:active, a.card:hover { border-color: #0ea5e9; }
-  a.card img { width: 52px; height: 52px; border-radius: 12px; flex-shrink: 0; }
-  a.card div { min-width: 0; }
-  a.card strong { display: block; font-size: 16px; }
-  a.card span { color: #94a3b8; font-size: 13px; }
-  #install { margin-top: 20px; padding: 14px 16px; border: 1px solid #1e293b; border-radius: 12px; background: rgba(10,20,38,0.5); }
-  #install-btn { display: block; width: 100%; min-height: 48px; margin-bottom: 10px; border: 1px solid #0ea5e9; border-radius: 10px;
-                 background: #0369a1; color: #fff; font: 700 15px system-ui, -apple-system, sans-serif; cursor: pointer; }
-  #install-msg { margin: 0 0 10px; color: #4ade80; font-size: 14px; }
-  #install summary { min-height: 44px; display: flex; align-items: center; cursor: pointer; color: #38bdf8; font-weight: 600; font-size: 14.5px; }
-  #install p { margin: 8px 0 0; font-size: 13.5px; color: #cbd5e1; }
-  #install b { color: #e2e8f0; }
-  :focus-visible { outline: 2px solid #38bdf8; outline-offset: 2px; }
-  footer { color: #94a3b8; font-size: 11.5px; margin-top: 28px; }
-  footer a { color: #94a3b8; }
-  /* Affichage « plein soleil » choisi dans un guide (réglage commun à l'appareil) */
-  html.sun body { background: #f5f7fa; }
-  html.sun main { background: #020617; filter: invert(1) hue-rotate(180deg); }
-  html.sun main img { filter: invert(1) hue-rotate(180deg); }
+/* ════════════════════════════════════════
+   DESIGN TOKENS
+════════════════════════════════════════ */
+:root {
+  --navy:    #0A1E35;
+  --navy-md: #122B47;
+  --navy-lt: #1B4F72;
+  --gold:    #9A7B3A;
+  --gold-lt: #C4A25A;
+  --gold-xs: #EEE0C0;
+  --muted:   #6B7F94;
+  --rule:    #D0DCE8;
+  --light:   #F4F7FA;
+  --text:    #0F1923;
+  --white:   #FFFFFF;
+  --trans:   0.2s cubic-bezier(0.4,0,0.2,1);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 9.8pt; }
+
+body {
+  font-family: 'Source Sans 3', sans-serif;
+  background: #BDC9D6;
+  background-image:
+    radial-gradient(ellipse at 15% 15%, rgba(10,30,53,0.1) 0%, transparent 55%),
+    radial-gradient(ellipse at 85% 85%, rgba(154,123,58,0.07) 0%, transparent 55%);
+  color: var(--text);
+  padding: 48px 20px 80px;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+/* ATS — hidden h1 readable by parsers */
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap;
+}
+
+/* ════════════════════════════════════════
+   DOWNLOAD BUTTON
+════════════════════════════════════════ */
+.btn-pdf {
+  position: fixed; bottom: 28px; right: 28px; z-index: 999;
+  background: var(--navy); color: var(--white);
+  border: none; padding: 13px 24px;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 8pt; font-weight: 600; cursor: pointer;
+  border-radius: 2px; border-left: 3px solid var(--gold-lt);
+  letter-spacing: 1px; text-transform: uppercase;
+  box-shadow: 0 8px 32px rgba(10,30,53,0.25);
+  transition: background var(--trans), transform var(--trans), box-shadow var(--trans);
+  display: flex; align-items: center; gap: 8px;
+}
+.btn-pdf::before { content: '↓'; font-size: 10pt; }
+.btn-pdf:hover {
+  background: var(--navy-md);
+  transform: translateY(-3px);
+  box-shadow: 0 14px 40px rgba(10,30,53,0.3);
+}
+
+/* ════════════════════════════════════════
+   PAGE WRAPPER
+════════════════════════════════════════ */
+@page { size: A4; margin: 0; }
+
+.page {
+  background: var(--white);
+  width: 210mm; max-width: 100%;
+  margin: 0 auto;
+  box-shadow: 0 20px 80px rgba(10,30,53,0.28);
+  opacity: 0;
+  animation: fadeUp 0.55s cubic-bezier(0.4,0,0.2,1) 0.05s forwards;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ════════════════════════════════════════
+   HEADER — full width, 2 zones
+════════════════════════════════════════ */
+.header {
+  background: var(--navy);
+  position: relative;
+  overflow: hidden;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+/* Decorative corner rings */
+.header::before {
+  content: '';
+  position: absolute; top: -50px; right: -50px;
+  width: 220px; height: 220px;
+  border: 1px solid rgba(154,123,58,0.12);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.header::after {
+  content: '';
+  position: absolute; top: -20px; right: -20px;
+  width: 140px; height: 140px;
+  border: 1px solid rgba(154,123,58,0.08);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* Zone 1 — name + tagline */
+.header-top {
+  padding: 22px 36px 14px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.name {
+  font-family: 'Playfair Display', serif;
+  font-size: 32pt; font-weight: 700;
+  color: var(--white); line-height: 1;
+  letter-spacing: -0.5px; margin-bottom: 8px;
+}
+.name-accent { color: var(--gold-lt); }
+
+/* FIX: each tagline item is a <span.tag-item> so display:block works on mobile */
+.tagline {
+  display: flex; flex-wrap: wrap; align-items: center;
+  gap: 0;
+  font-size: 7pt; color: rgba(168,196,220,0.85);
+  letter-spacing: 2.8px; text-transform: uppercase; font-weight: 400;
+}
+.tag-item { white-space: nowrap; }
+.tag-sep  { color: var(--gold); margin: 0 8px; opacity: 0.6; }
+
+/* Zone 2 — contacts + links */
+.header-bottom {
+  padding: 10px 36px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px 0;
+}
+
+.contacts {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.contact-item {
+  font-size: 7.5pt;
+  color: rgba(168,196,220,0.85);
+  font-weight: 300;
+  line-height: 1.6;
+  position: relative;
+  padding-left: 10px;
+}
+.contact-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px; height: 3px;
+  border-radius: 50%;
+  background: var(--gold-lt);
+  opacity: 0.85;
+}
+
+.header-links {
+  display: flex; gap: 18px; align-items: center;
+}
+.header-links a {
+  font-size: 7pt; color: rgba(196,162,90,0.85);
+  text-decoration: none; font-weight: 300;
+  letter-spacing: 0.3px;
+  display: flex; align-items: center; gap: 4px;
+  transition: color var(--trans);
+}
+.header-links a::before { content: '→'; font-size: 6.5pt; opacity: 0.6; }
+.header-links a:hover { color: var(--gold-lt); }
+
+/* Gold separator line */
+.gold-rule {
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold) 0%, var(--gold-lt) 25%, rgba(196,162,90,0.15) 70%, transparent 100%);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+/* ════════════════════════════════════════
+   CONTENT — single column full width
+════════════════════════════════════════ */
+.content { padding: 28px 40px 36px; }
+
+/* PROFILE */
+.profile-text {
+  font-size: 8.8pt; line-height: 1.8;
+  color: #1A2B3C; font-weight: 300;
+  border-left: 3px solid var(--gold);
+  padding: 10px 16px;
+  margin-bottom: 26px;
+  font-style: italic;
+  background: linear-gradient(135deg, rgba(244,247,250,0.8) 0%, rgba(255,255,255,0) 100%);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+.profile-text em { font-style: normal; font-weight: 600; color: var(--navy); }
+
+/* ════════════════════════════════════════
+   SECTION TITLES
+════════════════════════════════════════ */
+.sec {
+  display: flex; align-items: center; gap: 14px;
+  margin-bottom: 16px; margin-top: 26px;
+  page-break-after: avoid;
+}
+.sec.first { margin-top: 0; }
+
+.sec h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 10.5pt; font-weight: 700;
+  color: var(--white); letter-spacing: 1.5px; white-space: nowrap;
+  background: var(--navy);
+  padding: 5px 18px 4px 12px;
+  clip-path: polygon(0 0, 100% 0, calc(100% - 9px) 100%, 0 100%);
+  border-left: 3px solid var(--gold-lt);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+.sec-rule {
+  flex: 1; height: 1px;
+  background: linear-gradient(90deg, rgba(154,123,58,0.5) 0%, rgba(208,220,232,0.2) 100%);
+}
+
+/* ════════════════════════════════════════
+   JOB ENTRIES
+════════════════════════════════════════ */
+.job {
+  margin-bottom: 18px;
+  padding: 12px 16px 12px 18px;
+  border-left: 2px solid transparent;
+  transition: border-color var(--trans), background var(--trans);
+  page-break-inside: avoid;
+  position: relative;
+}
+.job:hover {
+  border-left-color: var(--gold);
+  background: rgba(154,123,58,0.02);
+}
+
+/* Timeline dot */
+.job::before {
+  content: '';
+  position: absolute; left: -5px; top: 18px;
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--white); border: 2px solid var(--rule);
+  transition: border-color var(--trans), background var(--trans);
+}
+.job:hover::before {
+  border-color: var(--gold-lt);
+  background: var(--gold-xs);
+}
+
+.job-header {
+  display: flex; justify-content: space-between;
+  align-items: baseline; margin-bottom: 3px;
+  flex-wrap: wrap; gap: 4px;
+}
+.job-header h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 11.5pt; font-weight: 600; color: var(--navy);
+  transition: color var(--trans);
+}
+.job:hover .job-header h3 { color: var(--navy-lt); }
+
+.job-dates {
+  font-size: 8.5pt; color: var(--navy-lt); font-style: italic;
+  white-space: nowrap;
+  background: var(--light);
+  padding: 2px 8px;
+  font-weight: 600;
+}
+.job-org {
+  font-size: 8pt; color: var(--navy-lt);
+  font-weight: 600; margin-bottom: 2px; letter-spacing: 0.2px;
+}
+.job-context {
+  font-size: 7pt; color: var(--muted);
+  font-style: italic; margin-bottom: 7px;
+}
+
+.subcat {
+  font-size: 7.5pt; font-weight: 700; color: var(--gold);
+  text-transform: uppercase; letter-spacing: 1.8px;
+  margin: 9px 0 5px;
+  display: flex; align-items: center; gap: 8px;
+}
+.subcat::after {
+  content: '';
+  flex: 1; height: 1px;
+  background: linear-gradient(90deg, rgba(154,123,58,0.35) 0%, transparent 100%);
+}
+
+ul { list-style: none; padding: 0; }
+li {
+  font-size: 8pt; color: #1E2E3E; line-height: 1.65;
+  padding-left: 14px; position: relative;
+  margin-bottom: 4px; font-weight: 300;
+}
+/* FIX: CSS diamond bullet — no Unicode, perfectly rendered in all browsers + print */
+li::before {
+  content: '';
+  position: absolute; left: 1px; top: 6px;
+  width: 5px; height: 5px;
+  border-radius: 1px;
+  background: var(--gold);
+  opacity: 0.85;
+  transform: rotate(45deg);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+li strong { color: var(--navy); font-weight: 600; }
+
+/* ════════════════════════════════════════
+   SKILLS GRID
+════════════════════════════════════════ */
+.skills-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 0.75fr 1.4fr;
+  gap: 20px 28px;
+  background: var(--light);
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--gold);
+  padding: 22px 26px;
+  margin-bottom: 4px;
+  page-break-inside: avoid;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.skill-label {
+  font-size: 5.5pt; font-weight: 600; color: var(--gold);
+  text-transform: uppercase; letter-spacing: 2.5px;
+  margin-bottom: 7px; padding-bottom: 4px;
+  border-bottom: 1px solid var(--rule);
+  display: block;
+}
+
+.pills { display: flex; flex-wrap: wrap; gap: 4px; }
+.skill-pill {
+  font-size: 6.5pt; color: var(--navy-lt);
+  background: var(--white); border: 1px solid var(--rule);
+  border-radius: 2px; padding: 2px 6px;
+  display: inline-block;
+  transition: border-color var(--trans);
+}
+.skill-pill:hover { border-color: var(--gold); }
+
+.lang-row {
+  display: flex; justify-content: space-between;
+  align-items: baseline; margin-bottom: 4px;
+  flex-wrap: wrap; gap: 2px 8px;
+}
+.lang-name { font-size: 7.5pt; color: var(--text); white-space: nowrap; }
+.lang-level { font-size: 6.5pt; color: var(--muted); font-style: italic; }
+
+.footnote-small {
+  font-size: 6pt; color: var(--muted);
+  font-style: italic; margin-top: 5px;
+}
+
+/* ════════════════════════════════════════
+   EDUCATION
+════════════════════════════════════════ */
+.edu { margin-bottom: 12px; page-break-inside: avoid; }
+.edu h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 10pt; font-weight: 600; color: var(--navy);
+}
+.edu-meta   { font-size: 7.5pt; color: var(--navy-lt); margin: 2px 0; font-weight: 400; }
+.edu-detail { font-size: 7.5pt; color: var(--text); font-weight: 300; }
+.edu-thesis {
+  font-size: 6.5pt; color: var(--muted); font-style: italic;
+  margin-top: 3px; border-left: 2px solid var(--rule); padding-left: 8px;
+}
+
+/* ════════════════════════════════════════
+   CAREER BREAK
+════════════════════════════════════════ */
+.break-box {
+  display: flex; align-items: center; gap: 12px;
+  border-left: 2px solid var(--rule);
+  padding: 4px 14px; margin-top: 4px;
+  page-break-inside: avoid;
+}
+.break-year {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 8pt; color: var(--muted); font-weight: 600; line-height: 1;
+  white-space: nowrap;
+}
+.break-divider { width: 1px; height: 14px; background: var(--rule); flex-shrink: 0; }
+.break-text { font-size: 8pt; color: var(--muted); font-style: italic; }
+
+/* ════════════════════════════════════════
+   RESPONSIVE — TABLET (≤ 800px)
+════════════════════════════════════════ */
+@media screen and (max-width: 800px) {
+  body { padding: 0; background: var(--white); }
+  .page { width: 100%; box-shadow: none; animation: none; opacity: 1; }
+  .btn-pdf { bottom: 16px; right: 16px; padding: 10px 16px; font-size: 7.5pt; }
+  .name { font-size: 24pt; }
+  .header-top { padding: 18px 22px 12px; }
+  .header-bottom {
+    padding: 10px 22px 14px;
+    flex-direction: column; align-items: flex-start; gap: 8px;
+  }
+  .content { padding: 20px 22px 28px; }
+  html { font-size: 10.5pt; }
+  li { font-size: 9pt; }
+  .skills-grid { grid-template-columns: repeat(2, 1fr); }
+  .job::before { display: none; }
+  .header::before, .header::after { display: none; }
+}
+
+/* ── MOBILE (≤ 480px) ── */
+@media screen and (max-width: 480px) {
+  .name { font-size: 20pt; }
+
+  /* FIX: tagline — each .tag-item on its own line, separators hidden */
+  .tagline {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+    letter-spacing: 2px;
+    font-size: 6pt;
+  }
+  .tag-sep { display: none; }
+  .tag-item { display: block; }
+
+  .header-top { padding: 14px 18px 10px; }
+  .header-bottom { padding: 8px 18px 14px; gap: 6px; }
+
+  /* FIX: flex-start so all dots align on the left edge regardless of text length */
+  .contacts { display: block; width: 100%; }
+  .contact-item { display: block; font-size: 7pt; width: 100%; margin-bottom: 5px; }
+
+  .header-links { flex-direction: column; gap: 4px; }
+  .header-links a { font-size: 7pt; }
+
+  .content { padding: 14px 16px 22px; }
+  .skills-grid { grid-template-columns: 1fr 1fr; gap: 12px 16px; padding: 14px; }
+  .sec h2 { font-size: 9.5pt; }
+  .job-header h3 { font-size: 10pt; }
+  .job { padding-left: 10px; }
+  .btn-pdf { padding: 10px 14px; font-size: 7pt; }
+}
+
+/* ════════════════════════════════════════
+   PRINT
+════════════════════════════════════════ */
+@media print {
+  body { background: white; padding: 0; }
+  .page { box-shadow: none; width: 100%; opacity: 1; animation: none; }
+  .btn-pdf { display: none !important; }
+
+  /* Balanced spacing — less condensed */
+  .content { padding: 22px 36px 24px; }
+  .profile-text { margin-bottom: 16px; padding: 8px 14px; line-height: 1.65; font-size: 8.5pt; }
+  .sec { margin-top: 18px; margin-bottom: 10px; }
+  .sec.first { margin-top: 0; }
+  .job { margin-bottom: 14px; padding: 5px 12px 5px 14px; }
+  .job-header { margin-bottom: 2px; }
+  .job-context { margin-bottom: 4px; }
+  .subcat { margin: 6px 0 3px; }
+  li { margin-bottom: 2px; line-height: 1.5; font-size: 7.8pt; }
+  .edu { margin-bottom: 10px; }
+  .skills-grid { padding: 14px 20px; gap: 14px 20px; margin-bottom: 4px; grid-template-columns: 1fr 1fr 0.75fr 1.4fr; }
+  .break-box { padding: 4px 12px; margin-top: 4px; }
+  .header-top { padding: 18px 30px 12px; }
+  .header-bottom { padding: 8px 30px 12px; }
+
+  /* Page 2 starts at Egencia */
+  .job.egencia { page-break-before: always; }
+
+  /* Prevent orphans */
+  .sec { page-break-after: avoid; }
+  .job, .edu, .break-box, .skills-grid { page-break-inside: avoid; }
+
+  /* Strip interactive styles */
+  .job { border-left: none !important; background: none !important; }
+  .job::before { display: none; }
+  .job-dates { background: none !important; border: none !important; padding: 0; }
+  .job:hover .job-header h3 { color: var(--navy); }
+  .skill-pill { transition: none; }
+
+  /* Preserve colours */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
 </style>
 </head>
 <body>
-<main>
-  <h1>Guides de pêche du bar</h1>
-  <p class="sub">Marée calculée sur l'appareil · météo AROME et houle par spot · carte · réglementation · journal de session · analyse de photos.</p>
 
-  <form id="search" role="search" aria-label="Chercher un spot">
-    <label for="q">Chercher un spot <span class="hint">par son nom, sa commune ou son guide</span></label>
-    <input id="q" type="search" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="go"
-           placeholder="Trévignon, Pen-Hir, Goury…" aria-describedby="count" aria-controls="results">
-    <button id="near" type="button">📍 Les spots les plus proches de moi</button>
-    <p id="count" role="status" aria-live="polite"></p>
-    <ul id="results" aria-label="Spots trouvés" hidden></ul>
-  </form>
+<h1 class="sr-only">Félix Muzellec — FP&A Manager, Revenue Operations, Paris</h1>
+<button class="btn-pdf" onclick="window.print()">Download PDF</button>
 
-  <section class="dept" aria-labelledby="dept-29">
-    <h2 id="dept-29">Finistère (29) <small>6&nbsp;guides · 56&nbsp;spots</small></h2>
-    <a class="card" href="carantec.html"><img src="carantec.png" alt=""><div><strong>Carantec</strong><span>Baie de Morlaix et Haut-Léon · du Kernic à Locquirec · 7&nbsp;spots</span></div></a>
-    <a class="card" href="plouguerneau.html"><img src="plouguerneau.png" alt=""><div><strong>Plouguerneau</strong><span>Pays des Abers · des abers au Conquet · 10&nbsp;spots</span></div></a>
-    <a class="card" href="logonna.html"><img src="logonna.png" alt=""><div><strong>Logonna-Daoulas</strong><span>Rade de Brest · du fond de rade au goulet · 11&nbsp;spots</span></div></a>
-    <a class="card" href="crozon.html"><img src="crozon.png" alt=""><div><strong>Crozon</strong><span>Presqu'île de Crozon et baie de Douarnenez · de Dinan à Trénaouret · 7&nbsp;spots</span></div></a>
-    <a class="card" href="audierne.html"><img src="audierne.png" alt=""><div><strong>Audierne</strong><span>Cap Sizun et baie d'Audierne · de la pointe du Raz à Penmarc'h · 11&nbsp;spots</span></div></a>
-    <a class="card" href="concarneau.html"><img src="concarneau.png" alt=""><div><strong>Concarneau</strong><span>Cornouaille · de l'Odet à la Laïta · 10&nbsp;spots</span></div></a>
-  </section>
-  <section class="dept" aria-labelledby="dept-50">
-    <h2 id="dept-50">Manche (50) <small>1&nbsp;guide · 10&nbsp;spots</small></h2>
-    <a class="card" href="pirou.html"><img src="pirou.png" alt=""><div><strong>Pirou Plage</strong><span>Côte ouest du Cotentin · de Granville à Goury · 10&nbsp;spots</span></div></a>
-  </section>
+<div class="page">
 
-  <!-- Masqué dans l'application installée ; affiché par le script dans le navigateur. -->
-  <section id="install" hidden aria-label="Installer l'application">
-    <button id="install-btn" type="button" hidden>Installer l'application</button>
-    <p id="install-msg" role="status" hidden></p>
-    <details id="install-help">
-      <summary>Installer sur le téléphone</summary>
-      <p>Une seule application regroupe cet accueil et les sept guides. Elle s'ouvre sur cette page. Sur Android, un appui long sur son icône propose des raccourcis vers les trois premiers guides (Chrome n'en affiche pas plus) ; la recherche ci-dessus mène à tous les spots.</p>
-      <p><b>Android (Chrome)</b> : la page doit être ouverte dans Chrome lui-même. Si elle s'affiche dans l'aperçu d'une autre application (lien ouvert depuis un message, GitHub…), passe d'abord par menu ⋮ → « Ouvrir dans Chrome ». Ensuite, menu ⋮ → « Installer l'application », ou « Ajouter à l'écran d'accueil » puis « Installer ». Téléphone en anglais : « Install app », ou « Add to Home screen » puis « Install ».</p>
-      <p><b>iPhone (Safari)</b> : bouton Partager → « Sur l'écran d'accueil ».</p>
-      <p>Si tu avais déjà ajouté un guide seul à l'écran d'accueil, tu peux retirer cette ancienne icône.</p>
-    </details>
-  </section>
+  <!-- ══ HEADER ══ -->
+  <header class="header">
 
-  <footer>
-    Chaque guide a sa propre météo et son propre journal ; la clé API des photos sert à tous.<br>
-    Météo : <a href="https://open-meteo.com/">Open-Meteo.com</a> (CC BY 4.0) · Marée : constantes TICON-4 (CC BY 4.0), calcul d'après Neaps (MIT).<br>
-    Version 8.13 · 2d98f9671f4a
-  </footer>
-</main>
-<script>
-(function () {
-  // Hors ligne : le service worker garde l'accueil et les guides en cache.
-  if ("serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "localhost")) {
-    navigator.serviceWorker.register("sw.js", { scope: "./" }).catch(function () {});
-  }
-  try { if (localStorage.getItem("bar:theme") === "sun") document.documentElement.classList.add("sun"); } catch (e) { /* stockage refusé */ }
+    <!-- Zone 1 : name + tagline -->
+    <div class="header-top">
+      <div class="name">F&eacute;lix <span class="name-accent">Muzellec</span></div>
+      <div class="tagline">
+        <span class="tag-item">Finance &amp; Revenue Operations</span>
+        <span class="tag-sep">&middot;</span>
+        <span class="tag-item">FP&amp;A</span>
+        <span class="tag-sep">&middot;</span>
+        <span class="tag-item">Commercial Performance</span>
+        <span class="tag-sep">&middot;</span>
+        <span class="tag-item">Systems Architecture</span>
+      </div>
+    </div>
 
-  // ── Recherche d'un spot ──
-  // Index écrit par scripts/build.mjs depuis les fiches des guides : [guide, id, nom, sous-titre, guide affiché, département, autres mots, lat, lon].
-  var SPOTS = [["carantec","carantec","Carantec : Penn al Lann – Cosmeur","Pointes, plages et parcs du Kelenn","Carantec","Finistère","Carantec Carantec (29660) Baie de Morlaix et Haut-Léon, Finistère nord",48.6732,-3.89898],["carantec","penze","Embouchure de la Penzé","Port de Carantec","Carantec","Finistère","Rivières de Morlaix et de la Penzé Carantec / Plouezoc'h (29660, 29252) Baie de Morlaix et Haut-Léon, Finistère nord",48.67222,-3.92333],["carantec","barnenez","Barnénez – Dourduff","Parcs et pointe, rive est de la rivière de Morlaix (Plouezoc'h)","Carantec","Finistère","Rivières de Morlaix et de la Penzé Carantec / Plouezoc'h (29660, 29252) Baie de Morlaix et Haut-Léon, Finistère nord",48.66738,-3.85513],["carantec","primel","Pointe de Primel","Primel-Trégastel, Plougasnou","Carantec","Finistère","Plougasnou Primel / Saint-Jean-du-Doigt (29630) Baie de Morlaix et Haut-Léon, Finistère nord",48.7154,-3.81788],["carantec","saintjean","Saint-Jean-du-Doigt","Rochers à droite de la plage, Plougasnou","Carantec","Finistère","Plougasnou Primel / Saint-Jean-du-Doigt (29630) Baie de Morlaix et Haut-Léon, Finistère nord",48.70053,-3.78529],["carantec","locquirec","Locquirec : pointe et digue","Port de Locquirec, baie de Locquirec","Carantec","Finistère","Locquirec Locquirec (29241) Baie de Morlaix et Haut-Léon, Finistère nord",48.6898,-3.6469],["carantec","kernic","Baie du Kernic","Plouescat, Plounévez-Lochrist et Ker Emma (Haut-Léon)","Carantec","Finistère","Haut-Léon (baie du Kernic) Plouescat / Plounévez-Lochrist (29430) Baie de Morlaix et Haut-Léon, Finistère nord",48.65036,-4.23506],["plouguerneau","pennenez","Penn Enez – Grève Blanche","Koréjou, Plouguerneau","Plouguerneau","Finistère","Pays des Abers Plouguerneau / Landéda (29880, 29870) Pays des Abers, Finistère nord",48.62897,-4.52667],["plouguerneau","pelguent","Pointe de Roc'h Pelguent","Plouguerneau, face à l'Île Vierge","Plouguerneau","Finistère","Pays des Abers Plouguerneau / Landéda (29880, 29870) Pays des Abers, Finistère nord",48.6365,-4.53892],["plouguerneau","paluden","Aber Wrac'h : Paluden – pont du Diable","Lannilis / Plouguerneau, intérieur de l'aber","Plouguerneau","Finistère","Intérieur des abers Paluden (Lannilis / Plouguerneau) Pays des Abers, Finistère nord",48.58823,-4.52145],["plouguerneau","saintemarguerite","Dunes de Sainte-Marguerite","Presqu'île Sainte-Marguerite, Landéda","Plouguerneau","Finistère","Pays des Abers Plouguerneau / Landéda (29880, 29870) Pays des Abers, Finistère nord",48.5947,-4.6017],["plouguerneau","aberbenoit","Embouchure de l'Aber Benoît","Beg ar Vilh, Landéda","Plouguerneau","Finistère","Pays des Abers Plouguerneau / Landéda (29880, 29870) Pays des Abers, Finistère nord",48.57581,-4.59885],["plouguerneau","kerlouan","Kerlouan : Enez Amann ar Rouz","Meneham, Côte des Légendes","Plouguerneau","Finistère","Côte des Légendes Kerlouan (29890) Pays des Abers, Finistère nord",48.65747,-4.43665],["plouguerneau","aberildut","Embouchure de l'Aber Ildut","Lanildut, plage du Crapaud","Plouguerneau","Finistère","Iroise nord Lanildut / Plouarzel / Le Conquet (29840, 29217) Pays des Abers, Finistère nord",48.471,-4.75732],["plouguerneau","corsen","Pointe de Corsen","Plouarzel, mer d'Iroise","Plouguerneau","Finistère","Iroise nord Lanildut / Plouarzel / Le Conquet (29840, 29217) Pays des Abers, Finistère nord",48.4145,-4.7955],["plouguerneau","blancssablons","Plage des Blancs-Sablons","Le Conquet, au nord de la presqu'île de Kermorvan","Plouguerneau","Finistère","Iroise nord Lanildut / Plouarzel / Le Conquet (29840, 29217) Pays des Abers, Finistère nord",48.36909,-4.764],["plouguerneau","kermorvan","Pointe de Kermorvan","Le Conquet, entrée du chenal du Four","Plouguerneau","Finistère","Iroise nord Lanildut / Plouarzel / Le Conquet (29840, 29217) Pays des Abers, Finistère nord",48.3617,-4.79],["logonna","moulinmer","Moulin Mer","Anse de Moulin-Mer, Logonna-Daoulas","Logonna-Daoulas","Finistère","Fond de rade Logonna-Daoulas (29460) Rade de Brest",48.3159,-4.2862],["logonna","bendy","Pointe du Bendy","Anse du Bendy, Logonna-Daoulas","Logonna-Daoulas","Finistère","Fond de rade Logonna-Daoulas (29460) Rade de Brest",48.315,-4.33633],["logonna","rostiviec","Rostiviec","Port et anse de Penfoul, Loperhet","Logonna-Daoulas","Finistère","Fond de rade Logonna-Daoulas (29460) Rade de Brest",48.34765,-4.32676],["logonna","camfrout","L'Hôpital-Camfrout","Rivière du Camfrout, Tibidy, Troaon","Logonna-Daoulas","Finistère","Fond de rade Logonna-Daoulas (29460) Rade de Brest",48.30013,-4.24726],["logonna","lauberlach","Sillon de Lauberlac'h","Anse de l'Auberlach, Plougastel-Daoulas","Logonna-Daoulas","Finistère","Fond de rade Logonna-Daoulas (29460) Rade de Brest",48.33725,-4.41426],["logonna","armorique","Pointe de l'Armorique","Plougastel-Daoulas, rive sud de la presqu'île","Logonna-Daoulas","Finistère","Rade centrale Landévennec / Plougastel-Daoulas Rade de Brest",48.32734,-4.45779],["logonna","landevennec","Landévennec","Cale de Port Maria + Sillon des Anglais","Logonna-Daoulas","Finistère","Rade centrale Landévennec / Plougastel-Daoulas Rade de Brest",48.29493,-4.26916],["logonna","terenez","Île de Térénez","Sortie de l'Aulne, Rosnoën","Logonna-Daoulas","Finistère","Rade centrale Landévennec / Plougastel-Daoulas Rade de Brest",48.2835,-4.27926],["logonna","espagnols","Pointe des Espagnols","Roscanvel, entrée du Goulet","Logonna-Daoulas","Finistère","Goulet / large Camaret-sur-Mer et goulet de Brest Rade de Brest",48.34127,-4.53356],["logonna","minou","Pointe du Petit Minou","Plouzané, Goulet nord","Logonna-Daoulas","Finistère","Goulet / large Camaret-sur-Mer et goulet de Brest Rade de Brest",48.3367,-4.61399],["logonna","penhir","Pointe de Pen-Hir","Camaret-sur-Mer, mer d'Iroise","Logonna-Daoulas","Finistère","Goulet / large Camaret-sur-Mer et goulet de Brest Rade de Brest",48.25412,-4.62181],["crozon","dinan","Pointe de Dinan","Château de Dinan, Crozon, côte atlantique","Crozon","Finistère","Presqu'île de Crozon Crozon / Morgat (29160) Presqu'île de Crozon et baie de Douarnenez, Finistère",48.2319,-4.57084],["crozon","lostmarch","Pointe de Lostmarc'h","Éperon entre deux plages, Crozon, côte atlantique","Crozon","Finistère","Presqu'île de Crozon Crozon / Morgat (29160) Presqu'île de Crozon et baie de Douarnenez, Finistère",48.21233,-4.55735],["crozon","morgat","Pointe de Morgat","Pointe du Kador et abords du port, Crozon","Crozon","Finistère","Presqu'île de Crozon Crozon / Morgat (29160) Presqu'île de Crozon et baie de Douarnenez, Finistère",48.22104,-4.49299],["crozon","trezbellec","Plage de Trez Bellec","Telgruc-sur-Mer, nord de la baie de Douarnenez","Crozon","Finistère","Nord et fond de la baie de Douarnenez Telgruc-sur-Mer / Saint-Nic (29560, 29550) Presqu'île de Crozon et baie de Douarnenez, Finistère",48.2142,-4.37426],["crozon","pentrez","Plage de Pentrez","Saint-Nic, fond de la baie de Douarnenez","Crozon","Finistère","Nord et fond de la baie de Douarnenez Telgruc-sur-Mer / Saint-Nic (29560, 29550) Presqu'île de Crozon et baie de Douarnenez, Finistère",48.19543,-4.30432],["crozon","leyde","Pointe de Leydé","Sentier des Roches Blanches, Tréboul (Douarnenez)","Crozon","Finistère","Douarnenez et Cap Sizun nord Douarnenez / Beuzec-Cap-Sizun (29100, 29790) Presqu'île de Crozon et baie de Douarnenez, Finistère",48.10914,-4.36292],["crozon","trenaouret","Pointe de Trénaouret","Beuzec-Cap-Sizun, côte sud de la baie","Crozon","Finistère","Douarnenez et Cap Sizun nord Douarnenez / Beuzec-Cap-Sizun (29100, 29790) Presqu'île de Crozon et baie de Douarnenez, Finistère",48.09069,-4.5022],["audierne","goyen","Embouchure du Goyen","Digues d'Audierne et de Poulgoazec","Audierne","Finistère","Cap Sizun Audierne / Plogoff (29770) Cap Sizun et baie d'Audierne, Finistère sud",48.01667,-4.53275],["audierne","sainttugen","Plage de Saint-Tugen","Primelin, baie d'Audierne","Audierne","Finistère","Cap Sizun Audierne / Plogoff (29770) Cap Sizun et baie d'Audierne, Finistère sud",48.01219,-4.59763],["audierne","feunteunaod","Feunteun Aod","Port-abri, Plogoff","Audierne","Finistère","Cap Sizun Audierne / Plogoff (29770) Cap Sizun et baie d'Audierne, Finistère sud",48.02939,-4.69559],["audierne","raz","Pointe du Raz","Plogoff, Raz de Sein","Audierne","Finistère","Cap Sizun Audierne / Plogoff (29770) Cap Sizun et baie d'Audierne, Finistère sud",48.04028,-4.74111],["audierne","trepasses","Baie des Trépassés","Plogoff / Cléden-Cap-Sizun","Audierne","Finistère","Cap Sizun Audierne / Plogoff (29770) Cap Sizun et baie d'Audierne, Finistère sud",48.0469,-4.7068],["audierne","van","Pointe du Van","Cléden-Cap-Sizun, mer d'Iroise","Audierne","Finistère","Cap Sizun Audierne / Plogoff (29770) Cap Sizun et baie d'Audierne, Finistère sud",48.0644,-4.715],["audierne","brezellec","Pointe de Brézellec","Cléden-Cap-Sizun, baie de Douarnenez","Audierne","Finistère","Cap Sizun Audierne / Plogoff (29770) Cap Sizun et baie d'Audierne, Finistère sud",48.0696,-4.6642],["audierne","penhors","Penhors","Pouldreuzic, baie d'Audierne","Audierne","Finistère","Baie d'Audierne Pouldreuzic (29710) Cap Sizun et baie d'Audierne, Finistère sud",47.93958,-4.40311],["audierne","torche","Pointe de la Torche","Plomeur, sud de la baie d'Audierne","Audierne","Finistère","Pays bigouden sud Plomeur / Penmarc'h (29120, 29760) Cap Sizun et baie d'Audierne, Finistère sud",47.83707,-4.35327],["audierne","saintguenole","Rochers de Saint-Guénolé","Côte sauvage de Saint-Guénolé (Rocher des Victimes), Penmarc'h","Audierne","Finistère","Pays bigouden sud Plomeur / Penmarc'h (29120, 29760) Cap Sizun et baie d'Audierne, Finistère sud",47.82064,-4.38113],["audierne","penmarch","Pointe de Penmarc'h","Phare d'Eckmühl, Saint-Pierre (Penmarc'h)","Audierne","Finistère","Pays bigouden sud Plomeur / Penmarc'h (29120, 29760) Cap Sizun et baie d'Audierne, Finistère sud",47.79831,-4.37275],["concarneau","sablesblancs","Concarneau : sud des Sables Blancs","Plage des Sables Blancs et plages au sud","Concarneau","Finistère","Concarneau, baie de la Forêt et Trégunc Concarneau / Fouesnant / Trégunc (29900, 29170, 29910) Cornouaille, Finistère sud",47.8802,-3.9314],["concarneau","capcoz","Pointe du Cap Coz","Flèche et digue, Fouesnant, baie de la Forêt","Concarneau","Finistère","Concarneau, baie de la Forêt et Trégunc Concarneau / Fouesnant / Trégunc (29900, 29170, 29910) Cornouaille, Finistère sud",47.88792,-3.98151],["concarneau","begmeil","Pointe de Beg Meil","Pointe et criques, Fouesnant","Concarneau","Finistère","Concarneau, baie de la Forêt et Trégunc Concarneau / Fouesnant / Trégunc (29900, 29170, 29910) Cornouaille, Finistère sud",47.85505,-3.9749],["concarneau","mousterlin","Pointe de Mousterlin","Platier rocheux, Fouesnant","Concarneau","Finistère","Fouesnant et l'Odet Fouesnant / Bénodet (29170, 29950) Cornouaille, Finistère sud",47.84449,-4.04035],["concarneau","odet","Embouchure de l'Odet","Bénodet – Sainte-Marine, secteur aval","Concarneau","Finistère","Fouesnant et l'Odet Fouesnant / Bénodet (29170, 29950) Cornouaille, Finistère sud",47.88157,-4.11529],["concarneau","trevignon","Pointe de Trévignon","Roches et digue, Trégunc","Concarneau","Finistère","Concarneau, baie de la Forêt et Trégunc Concarneau / Fouesnant / Trégunc (29900, 29170, 29910) Cornouaille, Finistère sud",47.7916,-3.85408],["concarneau","kerjean","Pointe de Kerjean","Pointe rocheuse et plage de Don, Trégunc","Concarneau","Finistère","Concarneau, baie de la Forêt et Trégunc Concarneau / Fouesnant / Trégunc (29900, 29170, 29910) Cornouaille, Finistère sud",47.79368,-3.82803],["concarneau","rospico","Pointe de Rospico","Pointe et anse de Rospico, Névez","Concarneau","Finistère","Aven, Bélon et Laïta Névez / Clohars-Carnoët (29920, 29360) Cornouaille, Finistère sud",47.78997,-3.76132],["concarneau","portmanech","Embouchures de l'Aven et du Bélon","Port-Manec'h, Névez","Concarneau","Finistère","Aven, Bélon et Laïta Névez / Clohars-Carnoët (29920, 29360) Cornouaille, Finistère sud",47.80506,-3.74262],["concarneau","laita","Estuaire de la Laïta","Port du Pouldu, Clohars-Carnoët","Concarneau","Finistère","Aven, Bélon et Laïta Névez / Clohars-Carnoët (29920, 29360) Cornouaille, Finistère sud",47.77255,-3.5298],["pirou","pirou","Pirou Plage","Estran, épis et tables, Pirou","Pirou Plage","Manche","Côte des havres Pirou / Gouville-sur-Mer (50) Côte ouest du Cotentin",49.16667,-1.58333],["pirou","regneville","Régnéville","Havre et embouchure de la Sienne","Pirou Plage","Manche","Côte des havres Pirou / Gouville-sur-Mer (50) Côte ouest du Cotentin",49.01667,-1.56667],["pirou","gouville","Gouville-sur-Mer","Parcs et estran (le Sénéquet est au large : pas un poste du bord)","Pirou Plage","Manche","Côte des havres Pirou / Gouville-sur-Mer (50) Côte ouest du Cotentin",49.08333,-1.6],["pirou","agon","Pointe d'Agon","Banc de sable et confluence du havre","Pirou Plage","Manche","Côte des havres Pirou / Gouville-sur-Mer (50) Côte ouest du Cotentin",49.01667,-1.58333],["pirou","portbail","Portbail","Havre, chenal et platier rocheux","Pirou Plage","Manche","Côte des Isles Portbail / Barneville-Carteret Côte ouest du Cotentin",49.33333,-1.71667],["pirou","carteret","Cap de Carteret","Cap rocheux, phare, tombant","Pirou Plage","Manche","Côte des Isles Portbail / Barneville-Carteret Côte ouest du Cotentin",49.36667,-1.8],["pirou","granville","Granville","Pointe du Roc, marnage maximal","Pirou Plage","Manche","Baie sud Granville (50400) Côte ouest du Cotentin",48.83402,-1.61431],["pirou","sciotot","Anse de Sciotot","Flamanville / Les Pieux","Pirou Plage","Manche","La Hague Auderville / cap de la Hague Côte ouest du Cotentin",49.49674,-1.84793],["pirou","surtainville","Surtainville","Longue plage exposée, Le Rozel","Pirou Plage","Manche","La Hague Auderville / cap de la Hague Côte ouest du Cotentin",49.45,-1.81667],["pirou","goury","Goury","Cap de la Hague, entrée du Raz Blanchard","Pirou Plage","Manche","La Hague Auderville / cap de la Hague Côte ouest du Cotentin",49.71502,-1.94528]];
-  // Tes spots, ajoutés dans les guides sur cet appareil (même stockage que les guides) : [guide, identifiant du guide, nom, département].
-  var GUIDES = [["carantec","carantec","Carantec","Finistère"],["plouguerneau","plouguerneau","Plouguerneau","Finistère"],["logonna","logonna-daoulas","Logonna-Daoulas","Finistère"],["crozon","crozon","Crozon","Finistère"],["audierne","audierne","Audierne","Finistère"],["concarneau","concarneau","Concarneau","Finistère"],["pirou","pirou-plage","Pirou Plage","Manche"]];
-  GUIDES.forEach(function (gd) {
-    var mine = [];
-    try { mine = JSON.parse(localStorage.getItem("bar:myspots:" + gd[1]) || "[]"); } catch (e) { mine = []; }
-    if (!Array.isArray(mine)) return;
-    mine.forEach(function (r) {
-      if (r && !r.deleted && /^moi-[a-z0-9]{4,24}$/.test(String(r.id)) && typeof r.name === "string" && r.name.trim().length >= 2)
-        SPOTS.push([gd[0], r.id, r.name.trim().slice(0, 60), "Ton spot", gd[2], gd[3], "", +r.lat, +r.lon]);
-    });
-  });
-  // Sans accents, apostrophes, tirets ni espaces : « penhir », « pen hir » et « Pen-Hir » se valent, « laita » trouve « Laïta ».
-  function fold(s) { return String(s).normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/œ/g, "oe").replace(/æ/g, "ae"); }
-  function compact(s) { return fold(s).replace(/[^a-z0-9]+/g, ""); }
-  var IDX = SPOTS.map(function (r) {
-    return { r: r, name: fold(r[2]), nameC: compact(r[2]), nameWords: fold(r[2]).split(/[^a-z0-9]+/).filter(Boolean),
-             sub: compact(r[3]), all: compact([r[2], r[3], r[4], r[5], r[6]].join(" ")) };
-  });
-  var q = document.getElementById("q"), list = document.getElementById("results"), count = document.getElementById("count");
-  // Rang : nom qui commence par la saisie, puis un mot du nom, puis le nom, puis le reste de la fiche.
-  function rank(e, toks, qc) {
-    if (!toks.every(function (t) { return e.all.indexOf(t) >= 0; })) return -1;
-    if (e.nameC.indexOf(qc) === 0) return 0;
-    if (e.nameWords.some(function (w) { return w.indexOf(toks[0]) === 0; }) && toks.every(function (t) { return e.nameC.indexOf(t) >= 0; })) return 1;
-    if (toks.every(function (t) { return e.nameC.indexOf(t) >= 0; })) return 2;
-    if (toks.every(function (t) { return e.sub.indexOf(t) >= 0; })) return 3;
-    return 4;
-  }
-  function el(tag, cls, text) { var x = document.createElement(tag); if (cls) x.className = cls; if (text != null) x.textContent = text; return x; }
-  // Une ligne de résultat ; `dist` : distance à vol d'oiseau quand on cherche autour de soi.
-  function render(hits, distOf) {
-    list.textContent = "";
-    hits.forEach(function (h) {
-      var r = h.e.r, li = el("li"), a = el("a"), img = el("img"), t = el("span", "t");
-      a.href = r[0] + ".html#spot=" + r[1];
-      img.src = r[0] + ".png"; img.alt = "";
-      t.appendChild(el("strong", null, r[2])); t.appendChild(el("span", "s", r[3]));
-      if (distOf) t.appendChild(el("span", "d", distOf(h)));
-      t.appendChild(el("span", "g", "Guide " + r[4] + " · " + r[5]));
-      a.appendChild(img); a.appendChild(t); li.appendChild(a); list.appendChild(li);
-    });
-    list.hidden = !hits.length;
-  }
-  function show() {
-    var raw = q.value.trim();
-    var toks = fold(raw).split(/\s+/).map(compact).filter(Boolean);
-    list.textContent = "";
-    if (!toks.length) { list.hidden = true; count.textContent = ""; return; }
-    var hits = IDX.map(function (e, i) { return { e: e, k: rank(e, toks, compact(raw)), i: i }; })
-      .filter(function (h) { return h.k >= 0; })
-      .sort(function (a, b) { return a.k - b.k || a.e.name.localeCompare(b.e.name, "fr"); });
-    if (!hits.length) { list.hidden = true; count.textContent = "Aucun spot ne correspond à « " + raw + " ». Essaie un autre nom, une commune ou un guide."; return; }
-    render(hits.slice(0, 12));
-    count.textContent = hits.length === 1 ? "1 spot trouvé." : hits.length > 12 ? hits.length + " spots trouvés, les 12 premiers sont affichés." : hits.length + " spots trouvés.";
-  }
-  q.addEventListener("input", show);
+    <!-- Zone 2 : contacts + links -->
+    <div class="header-bottom">
+      <div class="contacts">
+        <div class="contact-item">Bourg-la-Reine, France</div>
+        <div class="contact-item">felix.muzellec&#x40;gmail.com</div>
+        <div class="contact-item">+33 6 37 34 22 67</div>
+        <div class="contact-item">Hybrid &amp; on-site &mdash; Paris</div>
+      </div>
+      <div class="header-links">
+        <a href="https://www.linkedin.com/in/f%C3%A9lix-muzellec-97b6185a/" target="_blank" rel="noopener">linkedin.com/in/félix-muzellec</a>
+        <a href="https://felixmuzellec.github.io/resume/" target="_blank" rel="noopener">felixmuzellec.github.io/resume</a>
+      </div>
+    </div>
 
-  // ── Autour de moi : les spots les plus proches de la position du téléphone (GPS) ──
-  var nearBtn = document.getElementById("near"), nearLabel = nearBtn.textContent;
-  function kmBetween(a, b) {
-    var R = 6371, r = Math.PI / 180, dLat = (b.lat - a.lat) * r, dLon = (b.lon - a.lon) * r;
-    var x = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(a.lat * r) * Math.cos(b.lat * r) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
-    return 2 * R * Math.asin(Math.sqrt(x));
-  }
-  function fmtKm(k) {
-    if (k < 1) return Math.max(10, Math.round(k * 100) * 10) + " m";
-    return (k < 10 ? String(Math.round(k * 10) / 10).replace(".", ",") : String(Math.round(k))) + " km";
-  }
-  function showNear(me, acc) {
-    var hits = IDX.filter(function (e) { return isFinite(e.r[7]) && isFinite(e.r[8]); })
-      .map(function (e) { return { e: e, d: kmBetween(me, { lat: e.r[7], lon: e.r[8] }) }; })
-      .sort(function (a, b) { return a.d - b.d; });
-    if (!hits.length) { list.hidden = true; count.textContent = "Aucun spot à afficher."; return; }
-    render(hits.slice(0, 8), function (h) { return "à " + fmtKm(h.d) + " à vol d'oiseau"; });
-    var prec = acc ? " (position à ±" + (acc < 1000 ? Math.round(acc) + " m" : fmtKm(acc / 1000)) + ")" : "";
-    count.textContent = hits[0].d > 60
-      ? "Aucun guide ne couvre ta position" + prec + " : le spot le plus proche, " + hits[0].e.r[2] + ", est à " + fmtKm(hits[0].d) + "."
-      : "Les spots les plus proches de toi" + prec + ", du plus près au plus loin :";
-  }
-  nearBtn.addEventListener("click", function () {
-    if (!navigator.geolocation) { count.textContent = "Ce navigateur ne donne pas la position du téléphone."; return; }
-    nearBtn.disabled = true; nearBtn.textContent = "📍 Localisation…"; count.textContent = "Localisation en cours…";
-    navigator.geolocation.getCurrentPosition(function (p) {
-      nearBtn.disabled = false; nearBtn.textContent = nearLabel; q.value = "";
-      showNear({ lat: p.coords.latitude, lon: p.coords.longitude }, p.coords.accuracy);
-    }, function (err) {
-      nearBtn.disabled = false; nearBtn.textContent = nearLabel; list.hidden = true;
-      count.textContent = err && err.code === 1 ? "Position refusée : autorise la localisation pour cette page dans les réglages du navigateur, puis réessaie."
-        : err && err.code === 3 ? "Position introuvable à temps (signal GPS faible ?) : réessaie à découvert."
-        : "Position indisponible pour l'instant : réessaie.";
-    }, { enableHighAccuracy: true, timeout: 15000, maximumAge: 60000 });
-  });
-  // Touche « Aller » du clavier : ouvre le premier spot trouvé.
-  document.getElementById("search").addEventListener("submit", function (e) {
-    e.preventDefault(); var a = list.querySelector("a"); if (a && !list.hidden) location.href = a.href;
-  });
-  // Clavier : flèches entre le champ et les résultats ; Échap vide la recherche.
-  q.addEventListener("keydown", function (e) {
-    if (e.key === "ArrowDown") { var a = list.querySelector("a"); if (a && !list.hidden) { e.preventDefault(); a.focus(); } }
-    else if (e.key === "Escape" && q.value) { e.preventDefault(); q.value = ""; show(); }
-  });
-  list.addEventListener("keydown", function (e) {
-    var links = Array.prototype.slice.call(list.querySelectorAll("a")), i = links.indexOf(document.activeElement);
-    if (i < 0) return;
-    if (e.key === "ArrowDown" && i < links.length - 1) { e.preventDefault(); links[i + 1].focus(); }
-    else if (e.key === "ArrowUp") { e.preventDefault(); (i > 0 ? links[i - 1] : q).focus(); }
-    else if (e.key === "Escape") { e.preventDefault(); q.value = ""; show(); q.focus(); }
-  });
-  // Retour arrière depuis un guide : la saisie restée dans le champ affiche de nouveau ses résultats.
-  window.addEventListener("pageshow", function () { if (q.value) show(); });
+  </header>
+  <div class="gold-rule"></div>
 
-  // ── Installation ──
-  var standalone = (window.matchMedia && matchMedia("(display-mode: standalone)").matches) || navigator.standalone === true;
-  if (standalone) return;   // déjà dans l'application installée
-  var box = document.getElementById("install"), btn = document.getElementById("install-btn"),
-      msg = document.getElementById("install-msg"), help = document.getElementById("install-help"), deferred = null;
-  box.hidden = false;
-  // Chrome signale que l'installation est possible : un vrai bouton au lieu du menu ⋮.
-  window.addEventListener("beforeinstallprompt", function (e) {
-    e.preventDefault(); deferred = e; btn.hidden = false;
-  });
-  btn.addEventListener("click", function () {
-    if (!deferred) return;
-    var d = deferred; deferred = null; btn.hidden = true;
-    d.prompt();
-    if (d.userChoice) d.userChoice.then(function (c) {
-      if (c && c.outcome !== "accepted") { msg.textContent = "Installation annulée. Elle reste possible depuis le menu ⋮ de Chrome."; msg.hidden = false; }
-    }).catch(function () {});
-  });
-  window.addEventListener("appinstalled", function () {
-    btn.hidden = true; help.open = false;
-    msg.textContent = "Application installée : ouvre-la depuis l'écran d'accueil (icône « Pêche bar »).";
-    msg.hidden = false;
-  });
-})();
-</script>
+  <!-- ══ CONTENT ══ -->
+  <main class="content">
+
+    <!-- PROFILE -->
+    <p class="profile-text" style="margin-top:4px;">Finance and Revenue Operations professional with <em>10 years of experience</em> across technology and financial services. Specialised in <em>commercial performance and top-line analysis</em> &mdash; revenue, gross margin, pipeline analytics &mdash; with a proven ability to build the systems and tools that make financial insight actionable. An <em>early and active AI adopter</em>, I integrate AI-powered tooling into financial workflows to accelerate analysis, automate reporting and surface insights faster. I combine rigorous financial expertise with practical technical skills to deliver scalable, data-driven solutions &mdash; working closely with senior leadership to drive revenue performance and operational clarity.</p>
+
+    <!-- EXPERIENCE -->
+    <div class="sec first"><h2>Professional Experience</h2><div class="sec-rule"></div></div>
+
+    <!-- ALGOMARKETING -->
+    <article class="job">
+      <div class="job-header">
+        <h3>Finance Operations &amp; Systems Lead</h3>
+        <div class="job-dates">2022 &ndash; 2025</div>
+      </div>
+      <div class="job-org">Algomarketing Ltd &middot; London (Remote)</div>
+      <div class="job-context">B2B marketing &amp; MarTech consultancy &mdash; $30M revenue, 100+ experts, 27 countries, clients include Google, Stripe and Cisco.</div>
+      <div class="subcat">Systems Architecture &amp; Revenue Operations</div>
+      <ul>
+        <li>Built and owned the Salesforce/ZoomInfo commercial infrastructure from scratch — replacing Excel-based processes and automating the full cycle from lead capture to contract generation and renewal forecasting, delivering step-change improvements across lead enrichment (<strong>90% faster</strong>), nurturing, conversion, sales velocity and win rate.</li>
+        <li>Designed the commercial analytics layer of the EPM implementation on Modlr (SQL/JavaScript-based) &mdash; defining KPIs, gross margin frameworks and multi-level reporting tailored to the complex organisational structures of major accounts including Google, Stripe, Cisco and Zoom &mdash; while overseeing project delivery across <strong>200+ active engagements</strong>.</li>
+        <li>Eliminated revenue leakage by deploying validation protocols across the end-to-end procurement lifecycle (SOW/PO), ensuring <strong>100% billing accuracy</strong> and recovering <strong>$150K+</strong> in previously unbilled services.</li>
+      </ul>
+      <div class="subcat">Strategic Intelligence &amp; Analytics</div>
+      <ul>
+        <li>Built a Looker-based reporting framework serving as the primary decision-support layer for strategic, multi-consultant engagements — delivering client-facing BI dashboards providing real-time visibility on resource allocation, project spend and consultant utilisation across complex programme structures.</li>
+      </ul>
+      <div class="subcat">HR Technology &amp; Operations</div>
+      <ul>
+        <li>Developed a custom JavaScript application to support workforce planning and talent analytics — enabling the People team to model hiring pipelines, benchmark labour market data, optimise interview-to-hire ratios and track recruiter performance at individual and global level; orchestrated the rollout of Pinpoint and HiBob with <strong>100% data consistency</strong> across 5 international offices.</li>
+      </ul>
+    </article>
+
+    <!-- CATALINA -->
+    <article class="job">
+      <div class="job-header">
+        <h3>Senior Sales Operations Analyst</h3>
+        <div class="job-dates">2021 &ndash; 2022</div>
+      </div>
+      <div class="job-org">Catalina Marketing Europe &middot; Boulogne-Billancourt</div>
+      <div class="job-context">Data-driven shopper media for CPG brands &amp; retailers &mdash; $310M revenue across US, Europe and Japan.</div>
+      <div class="subcat">Commercial Finance Leadership</div>
+      <ul>
+        <li>Designed and owned European Gross Margin forecasting framework across <strong>4 markets</strong>, identifying <strong>&euro;2M+</strong> in margin improvement opportunities through systematic variance analysis.</li>
+        <li>Delivered root cause analyses for C-suite on revenue performance drivers, directly influencing strategic decisions on market prioritisation and resource allocation.</li>
+      </ul>
+      <div class="subcat">CRM &amp; Sales Efficiency</div>
+      <ul>
+        <li>Maintained CRM data integrity across <strong>200+ accounts</strong> and <strong>30+ sales reps</strong> in Salesforce, ensuring forecast accuracy within <strong>3% variance</strong>.</li>
+        <li>Developed budget models quantifying financial impact of go-to-market tactics across retail and CPG segments, enabling data-driven decisions on sales investment allocation.</li>
+      </ul>
+    </article>
+
+    <!-- EGENCIA — page break before on print -->
+    <article class="job egencia">
+      <div class="job-header">
+        <h3>FP&amp;A Analyst</h3>
+        <div class="job-dates">2017 &ndash; 2021</div>
+      </div>
+      <div class="job-org">Egencia &mdash; Expedia Group &middot; Paris</div>
+      <div class="job-context">Expedia Group's corporate travel division &mdash; $611M revenue (pre-COVID), 2,000+ employees, 60+ countries.</div>
+      <div class="subcat">Strategic Planning &amp; Analytics</div>
+      <ul>
+        <li>Designed and launched a commercial reporting suite &mdash; covering pipeline health, forecast accuracy, sales velocity, win rates, CAC/LTV and compensation tracking, segmented by region and business unit &mdash; adopted as the standard framework by Sales, Managers, Directors and VPs across global business units.</li>
+        <li>Championed and led FP&amp;A team transition to Tableau, promoting self-service analytics adoption and reducing ad-hoc reporting requests by <strong>60%</strong>, accelerating decision-making cycles.</li>
+      </ul>
+      <div class="subcat">Commercial Operations at Scale</div>
+      <ul>
+        <li>Served as Finance partner for global compensation, managing <strong>20+ incentive plans</strong> across a <strong>600-person</strong> worldwide Sales &amp; Account Management organisation through the full implementation of Callidus, ensuring accurate monthly and quarterly payouts.</li>
+        <li>Managed the global annual planning process for <strong>$1.6B new sales gross bookings</strong> pipeline across all regions and segments &mdash; <strong>96% plan attainment</strong>, with risk mitigation 90 days in advance.</li>
+      </ul>
+    </article>
+
+    <!-- GEOCHAT -->
+    <article class="job">
+      <div class="job-header">
+        <h3>Business Analyst</h3>
+        <div class="job-dates">2016 &ndash; 2017</div>
+      </div>
+      <div class="job-org">Geochat &middot; Paris</div>
+      <div class="job-context">Early-stage geo-social startup incubated at Schoolab.</div>
+      <ul>
+        <li>Defined GTM roadmap and financial projections to support seed-round fundraising.</li>
+      </ul>
+    </article>
+
+    <!-- FINEXSI -->
+    <article class="job">
+      <div class="job-header">
+        <h3>Junior Financial Analyst</h3>
+        <div class="job-dates">2015 &ndash; 2016</div>
+      </div>
+      <div class="job-org">Finexsi &middot; Paris</div>
+      <div class="job-context">Independent financial advisory &amp; audit firm &mdash; 80 professionals, specialised in valuations, fairness opinions and litigation support.</div>
+      <ul>
+        <li>Executed statutory and internal audits for listed and private companies across technology, retail and industrial sectors.</li>
+        <li>Performed company valuations for fairness opinions in private transactions and public tender offers.</li>
+      </ul>
+    </article>
+
+    <!-- EDUCATION -->
+    <div class="sec"><h2>Education &amp; Certifications</h2><div class="sec-rule"></div></div>
+
+    <div class="edu">
+      <h3>Marketing &amp; Data Automation Certificate</h3>
+      <div class="edu-meta">Le Wagon &middot; Paris &middot; 2022</div>
+      <div class="edu-detail">Data workflow automation &mdash; Zapier, n8n, Python &amp; JavaScript</div>
+    </div>
+
+    <div class="edu">
+      <h3>Master's Degree in Finance &mdash; Grande &Eacute;cole Program</h3>
+      <div class="edu-meta">NEOMA Business School &middot; Reims &middot; 2011 &ndash; 2014</div>
+      <div class="edu-detail">Graduated with Honours &middot; Passed CFA Level 1 on first attempt</div>
+      <div class="edu-thesis">Thesis: The Impact of Public Funding on the Performance of the French Venture Capital Market</div>
+    </div>
+
+    <!-- SKILLS -->
+    <div class="sec"><h2>Skills &amp; Languages</h2><div class="sec-rule"></div></div>
+
+    <div class="skills-grid">
+
+      <div class="skill-block">
+        <span class="skill-label">Finance &amp; BI</span>
+        <div class="pills">
+          <span class="skill-pill">Modlr</span>
+          <span class="skill-pill">Hyperion</span>
+          <span class="skill-pill">Callidus</span>
+          <span class="skill-pill">Anaplan</span>
+          <span class="skill-pill">Tableau</span>
+          <span class="skill-pill">Power BI</span>
+          <span class="skill-pill">Looker</span>
+          <span class="skill-pill">Excel / Sheets</span>
+        </div>
+      </div>
+
+      <div class="skill-block">
+        <span class="skill-label">CRM &amp; Automation</span>
+        <div class="pills">
+          <span class="skill-pill">Salesforce</span>
+          <span class="skill-pill">HubSpot</span>
+          <span class="skill-pill">ZoomInfo</span>
+          <span class="skill-pill">SQL</span>
+          <span class="skill-pill">Zapier / n8n</span>
+          <span class="skill-pill">JavaScript &#9733;</span>
+          <span class="skill-pill">Python &#9733;</span>
+        </div>
+        <div class="footnote-small">&#9733; via LLM-assisted tools</div>
+      </div>
+
+      <div class="skill-block">
+        <span class="skill-label">Languages</span>
+        <div class="lang-row"><span class="lang-name">French</span><span class="lang-level">Native</span></div>
+        <div class="lang-row"><span class="lang-name">English</span><span class="lang-level">Fluent</span></div>
+        <div class="lang-row"><span class="lang-name">Russian</span><span class="lang-level">Conv.</span></div>
+        <div class="lang-row"><span class="lang-name">Spanish</span><span class="lang-level">Conv.</span></div>
+      </div>
+
+      <div class="skill-block">
+        <span class="skill-label">Focus &amp; Interests</span>
+        <div class="lang-row"><span class="lang-name">Economic Policy</span></div>
+        <div class="lang-row"><span class="lang-name">Emerging Tech &amp; AI</span></div>
+        <div class="lang-row"><span class="lang-name">Scuba Diving</span><span class="lang-level">CMAS 3, Adv Nitrox</span></div>
+        <div class="lang-row"><span class="lang-name">Photography</span><span class="lang-level">Underwater, Wildlife</span></div>
+        <div class="lang-row"><span class="lang-name">Handball</span><span class="lang-level">15 yrs, Pré-Nat</span></div>
+      </div>
+
+    </div>
+
+    <!-- CAREER BREAK -->
+    <div class="sec"><h2>Note</h2><div class="sec-rule"></div></div>
+    <div class="break-box">
+      <div class="break-year">2025 &ndash; 2026</div>
+      <div class="break-divider"></div>
+      <div class="break-text">Career break.</div>
+    </div>
+
+  </main>
+</div>
+
+<!-- ATS keyword block — invisible to humans, readable by parsers -->
+<div aria-hidden="true" style="position:absolute;left:-9999px;top:-9999px;font-size:1px;color:transparent;overflow:hidden;">
+FP&amp;A Manager Finance Business Partner Revenue Operations RevOps Sales Operations Commercial Finance Gross Margin Forecasting Pipeline Analytics Budget Planning Variance Analysis CAC LTV Salesforce Tableau Looker SQL Modlr Callidus HubSpot Zapier n8n Python JavaScript EPM Business Intelligence KPI Dashboard SaaS Scale-up Technology Paris Île-de-France France NEOMA Business School Expedia Group Egencia Algomarketing Catalina Marketing Incentive Compensation Annual Planning Strategic Planning Data Automation Systems Architecture Workforce Planning Talent Analytics Hiring Pipeline Interview-to-Hire Consultant Utilisation Labour Market Programme Structures Commercial Reporting Sales Velocity Win Rate Pipeline Health Renewal Forecasting Lead Enrichment Nurturing Conversion Rate
+</div>
+
 </body>
 </html>
